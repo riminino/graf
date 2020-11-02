@@ -2,16 +2,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/x-icon" href="{% link favicon.ico %}" />
+  <link rel="shortcut icon" type="image/x-icon" href="{{url}}favicon.ico" />
   {% seo %}
   
   <!-- CSS -->
-  <link rel="stylesheet" href="{% link assets/css/stylesheet.sass %}?v={{gh.build_revision}}">
+  <link rel="stylesheet" href="{{url}}assets/css/stylesheet.css?v={{gh.build_revision}}">
   
   <!-- SCRIPTS -->
-  <script src="{% link assets/js/jquery.min.js %}"></script>
-  <script src="{% link assets/js/lz-string.js %}"></script>
-  <script src="{% link assets/js/script.coffee %}" defer></script>
+  <script src="{{url}}assets/js/jquery.min.js"></script>
+  <script src="{{url}}assets/js/lz-string.js"></script>
+  <script src="{{url}}assets/js/script.js" defer></script>
   
   <!-- LIVERELOAD -->
   {% if site.environment == "development" %}<script>document.write('<script src="//' + (location.hostname || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>{% endif %}
