@@ -1,0 +1,36 @@
+// Site width
+$width: 90%
+
+//
+// FONTS
+// --------------------------------------
+$font-size: 15px
+$line-height: 1.2
+$main-font: sans-serif
+$code-font: monospace
+$headings-font: serif
+
+//
+// COLORS
+// --------------------------------------
+
+// Base
+$hue: 120 !default
+$saturation: 0% !default
+$lightness: 50% !default
+$color: hsl($hue, $saturation, $lightness) !default
+
+// Shades
+$black: change-color($color, $lightness: 4%) !default
+$white: change-color($color, $lightness: 96%) !default
+$darker: change-color($color, $lightness: 8%) !default
+$dark: change-color($color, $lightness: 10%) !default
+$light: change-color($color, $lightness: 90%) !default
+$lighter: change-color($color, $lightness: 92%) !default
+
+// Elements
+$html-bg: $dark !default
+$html-fg: $white !default
+$main-bg: $black !default
+$nav-bg: $darker !default
+$link: $color !default

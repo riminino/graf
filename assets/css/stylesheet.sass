@@ -1,0 +1,19 @@
+---
+---
+@import default
+
+//
+// SYNTAX
+// --------------------------------------
+
+// light or no-preference
+@media (prefers-color-scheme: no-preference), (prefers-color-scheme: light)
+  @import {{ site.css.syntax.dark | default: 'rouge/github' | prepend: 'syntax/' }}
+
+// dark
+@media (prefers-color-scheme: dark)
+  @import {{ site.css.syntax.dark | default: 'rouge/gruvbox' | prepend: 'syntax/' }}
+  
+  // Overwrite background
+  [class*="highlight"], [class*="highlight"] .w
+    background: $dark
