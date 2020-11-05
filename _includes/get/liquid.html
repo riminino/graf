@@ -1,5 +1,0 @@
-{% assign gh = site.github %}
-{% assign repo = gh.public_repositories | where: "full_name", gh.repository_nwo | first %}
-{% assign url = site.url | append: site.baseurl %}
-{% assign slash = url | slice: -1 %}
-{% if slash != "/" %}{% assign url = url | append: "/" %}{% endif %}

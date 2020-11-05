@@ -1,12 +1,12 @@
 ---
-title: home
+title: Home
 ---
 # GitHub
+{% assign gh = site.github %}
 
 ```liquid
 {% raw %}{% assign gh = site.github %}{% endraw %}
 ```
-{% include get/liquid.html %}
 
 |`gh` property|value
 |:--|:--|
@@ -21,6 +21,7 @@ title: home
 |contributors.size|{{gh.contributors.size}}
 
 # Repository
+{% assign repo = gh.public_repositories | where: "full_name", gh.repository_nwo | first %}
 
 ```liquid
 {% raw %}{% assign repo = gh.public_repositories | where: "full_name", gh.repository_nwo | first %}{% endraw %}
