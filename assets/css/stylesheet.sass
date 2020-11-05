@@ -13,3 +13,7 @@
 // dark
 @media (prefers-color-scheme: dark)
   @import {{ site.css.syntax.dark | default: 'rouge/gruvbox' | prepend: 'syntax/' }}
+
+// Overwrite background
+[class*="highlight"], [class*="highlight"] .w
+  background: var(--html-bg)
