@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,13 +8,12 @@
   {% seo %}
   
   <!-- CSS -->
-  <link rel="stylesheet" href="{{url}}assets/css/stylesheet.css?v={{gh.build_revision}}">
+  <link rel="stylesheet" href="{{url}}assets/css/stylesheet.css?v={{site.time|date:'%s'}}">
   
   <!-- SCRIPTS -->
   <script src="{{url}}assets/js/jquery.min.js"></script>
   <script src="{{url}}assets/js/lz-string.js"></script>
   <script src="{{url}}assets/js/script.js" defer></script>
-  
-  <!-- LIVERELOAD -->
-  {% if site.environment == "development" %}<script>document.write('<script src="//' + (location.hostname || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>{% endif %}
+
 </head>
+<body>

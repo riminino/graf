@@ -1,15 +1,36 @@
 html, body
-  background-color: $html-bg
-  color: $html-fg
+  background-color: var(--html-bg)
+  color: var(--html-fg)
 
 section
-  background-color: $main-bg
+  background-color: var(--main-bg)
+
+thead, tfoot
+  background-color: var(--html-bg)
+th, td
+  border-color: var(--html-bg)
 
 nav
-  background-color: $nav-bg
+  background-color: var(--nav-bg)
   ul li
     a, span
       &:hover
-        background-color: $black
+        background-color: var(--main-bg)
       &.active
-        color: $white
+        color: var(--html-fg)
+
+a
+  color: var(--link)
+  &:hover
+    border-color: var(--link)
+
+header, footer
+  color: var(--link)
+  a
+    color: var(--html-fg)
+    &:hover
+      border-color: var(--html-fg)
+
+*
+  scrollbar-color: var(--scrollbar)
+  scrollbar-width: auto

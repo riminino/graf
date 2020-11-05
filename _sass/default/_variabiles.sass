@@ -15,22 +15,48 @@ $headings-font: serif
 // --------------------------------------
 
 // Base
-$hue: 120 !default
+$hue: 240 !default
 $saturation: 0% !default
-$lightness: 50% !default
+$lightness: 60% !default
 $color: hsl($hue, $saturation, $lightness) !default
 
 // Shades
-$black: change-color($color, $lightness: 4%) !default
-$white: change-color($color, $lightness: 96%) !default
-$darker: change-color($color, $lightness: 8%) !default
-$dark: change-color($color, $lightness: 10%) !default
-$light: change-color($color, $lightness: 90%) !default
-$lighter: change-color($color, $lightness: 92%) !default
+$shades: 4% 8% 12% 16% !default
+// Dark
+$black: change-color($color, $lightness: nth($shades, 1)) !default
+$darker: change-color($color, $lightness: nth($shades, 2)) !default
+$dark: change-color($color, $lightness: nth($shades, 3)) !default
+$darkless: change-color($color, $lightness: nth($shades, 4)) !default
+// Light
+$white: change-color($color, $lightness: 100% - nth($shades, 1)) !default
+$lighter: change-color($color, $lightness: 100% - nth($shades, 2)) !default
+$light: change-color($color, $lightness: 100% - nth($shades, 3)) !default
+$lightless: change-color($color, $lightness: 100% - nth($shades, 4)) !default
 
 // Elements
-$html-bg: $dark !default
-$html-fg: $white !default
-$main-bg: $black !default
-$nav-bg: $darker !default
+$html-bg: (light: $light, dark: $dark) !default
+$html-fg: (light: $black, dark: $white) !default
+$main-bg: (light: $white, dark: $black) !default
+$nav-bg: (light: $lighter, dark: $darker) !default
+$scrollbar: (light: $light $white, dark: $dark $black) !default
 $link: $color !default
+
+
+// Light theme, no-preference or no supported
+\:root
+  --html-bg: #{map-get($html-bg, light)}
+  --html-fg: #{map-get($html-fg, light)}
+  --main-bg: #{map-get($main-bg, light)}
+  --nav-bg: #{map-get($nav-bg, light)}
+  --scrollbar: #{map-get($scrollbar, light)}
+  --link: #{$color}
+
+// Dark theme
+@media (prefers-color-scheme: dark)
+  \:root
+    --html-bg: #{map-get($html-bg, dark)}
+    --html-fg: #{map-get($html-fg, dark)}
+    --main-bg: #{map-get($main-bg, dark)}
+    --nav-bg: #{map-get($nav-bg, dark)}
+    --scrollbar: #{map-get($scrollbar, dark)}
+    --link: #{$color}

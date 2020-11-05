@@ -1,14 +1,16 @@
 ---
+title: home
 ---
-# ok
-{% assign gh = site.github %}
+# GitHub
 
 ```liquid
 {% raw %}{% assign gh = site.github %}{% endraw %}
 ```
+{% include get/liquid.html %}
 
 |`gh` property|value
 |:--|:--|
+|pages_hostname|{{gh.pages_hostname}}
 |api_url|{{gh.api_url}}
 |build_revision|{{gh.build_revision}}
 |repository_nwo|{{gh.repository_nwo}}
@@ -18,10 +20,11 @@
 |is_project_page|{{gh.is_project_page|inspect}}
 |contributors.size|{{gh.contributors.size}}
 
+# Repository
+
 ```liquid
 {% raw %}{% assign repo = gh.public_repositories | where: "full_name", gh.repository_nwo | first %}{% endraw %}
 ```
-{% assign repo = gh.public_repositories | where: "full_name", gh.repository_nwo | first %}
 
 |`repo` property|value
 |:--|:--|
@@ -32,12 +35,19 @@
 |homepage|{{repo.homepage|inspect}}
 |default_branch|{{repo.default_branch}}
 
+# Contributor
+
 ```liquid
 {% raw %}{% assign contributor = gh.contributors.first %}{% endraw %}
 ```
 {% assign contributor = gh.contributors.first %}
 
-|`contributor` property|value
-|:--|:--
-|login|{{contributor.login}}
-|contributions|{{contributor.contributions}}
+|contributor.login|{{contributor.login}}
+|contributor.contributions|{{contributor.contributions}}
+
+# URLs
+
+|site.url|{{site.url}}
+|site.host|{{site.host}}
+|site.baseurl|{{site.baseurl}}
+|gh.environment|{{gh.environment|inspect}}
