@@ -1,54 +1,93 @@
 ---
 title: Home
 ---
-# GitHub
-{% assign gh = site.github %}
+# Form
 
-```liquid
-{% raw %}{% assign gh = site.github %}{% endraw %}
-```
+Top margin
 
-|`gh` property|value
-|:--|:--|
-|pages_hostname|{{gh.pages_hostname}}
-|api_url|{{gh.api_url}}
-|build_revision|{{gh.build_revision}}
-|repository_nwo|{{gh.repository_nwo}}
-|repository_url|{{gh.repository_url}}
-|versions.jekyll|{{gh.versions.jekyll}} `<meta name="generator" content="Jekyll v3.9.0">`{:.language-html}
-|is_user_page|{{gh.is_user_page|inspect}}
-|is_project_page|{{gh.is_project_page|inspect}}
-|contributors.size|{{gh.contributors.size}}
+<form markdown="0" prevent-default>
+<h3>Form title</h3>
+<div>
+  <label for="firstname">Age</label>
+  <input type="number" id="firstname" name="firstname" placeholder="First name" required>
+</div>
+<div>
+  <label for="lastname">Color</label>
+    <input type="color" id="lastname" name="lastname" placeholder="Last name" required>
+</div>
+<div>
+  <label for="lastname">Birth date</label>
+    <input type="date" id="lastname" name="lastname" placeholder="Last name" required>
+</div>
+<div>
+  <!-- Markup example 2: input is after label -->
+  <label for="email">Email address</label>
+  <input type="email" id="email" name="email" placeholder="Email address" required>
+  <small>We'll never share your email with anyone else.</small>
+</div>
+<input type="text" placeholder="Disabled" disabled>
+<input type="text" placeholder="Readonly" readonly>
+<div>
+  <label for="range">Range</label><output></output>
+  <input type="range" id="range">
+</div>
+<!-- Select -->
+<div>
+  <label for="country">Country</label>
+  <select id="country">
+    <option selected>Choose...</option>
+    <optgroup label="Group">
+      <option>...</option>
+    </optgroup>
+    <option>...</option>
+  </select>
+</div>
 
-# Repository
-{% assign repo = gh.public_repositories | where: "full_name", gh.repository_nwo | first %}
+<!-- Radios -->
+<div>
+  <label>Gender</label>
+  <label for="male">
+    <input type="radio" id="male" name="gender" value="male" checked>
+    Male
+  </label>
+  <label for="female">
+    <input type="radio" id="female" name="gender" value="female">
+    Female
+  </label>
+  <label for="other">
+    <input type="radio" id="other" name="gender" value="other">
+    Other
+  </label>
+</div>
 
-```liquid
-{% raw %}{% assign repo = gh.public_repositories | where: "full_name", gh.repository_nwo | first %}{% endraw %}
-```
+<textarea name="name" rows="5" placeholder="Text"></textarea>
 
-|`repo` property|value
-|:--|:--|
-|fork|{{repo.fork|inspect}}
-|forks|{{repo.forks}}
-|owner.type|{{repo.owner.type}}
-|updated_at|{{repo.updated_at}}
-|homepage|{{repo.homepage|inspect}}
-|default_branch|{{repo.default_branch}}
+<!-- Checkbox -->
+<div>
+  <label>Checkboxes</label>
+  <label for="terms">
+    <input type="checkbox" id="terms" name="terms">
+    I agree to the
+  </label>
+  <label for="bio">
+    <input type="checkbox" id="bio" name="bio">
+    Terms and Conditions
+  </label>
+</div>
 
-# Contributor
+<!-- Button -->
+<div>
+  <input type="submit" value="Submit">
+  <input type="reset" name="" value="Reset">
+  <input type="button" disabled name="" value="Disabled">
+</div>
+<!-- Button -->
+<div>
+  <button type="submit">Submit</button>
+  <button type="reset">Reset</button>
+  <button type="button" disabled>Disabled</button>
+</div>
 
-```liquid
-{% raw %}{% assign contributor = gh.contributors.first %}{% endraw %}
-```
-{% assign contributor = gh.contributors.first %}
+</form>
 
-|contributor.login|{{contributor.login}}
-|contributor.contributions|{{contributor.contributions}}
-
-# URLs
-
-|site.url|{{site.url}}
-|site.host|{{site.host}}
-|site.baseurl|{{site.baseurl}}
-|gh.environment|{{gh.environment|inspect}}
+Check bottom margin

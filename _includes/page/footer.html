@@ -1,7 +1,9 @@
+{%- assign repo = site.github.public_repositories | where: "full_name", site.github.repository_nwo | first -%}
 <footer>
   <ul>
     <li><a href="{{gh.repository_url}}">GitHub</a></li>
-    <li>updated {{site.time}}</li>
+    <li>Repo updated: {% include widgets/datetime.html datetime=repo.updated_at replace=true %}</li>
+    <li>Site build: {% include widgets/datetime.html datetime=site.time replace=true %}</li>
   </ul>
   <ul>
     <li><a href="#top">top</a></li>

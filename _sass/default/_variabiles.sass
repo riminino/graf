@@ -1,14 +1,21 @@
 // Site width
-$width: 90%
+$main-width: 90% !default
+$mobile-width: 40rem !default
 
 //
 // FONTS
 // --------------------------------------
 $font-size: 15px
 $line-height: 1.2
+$code-line-height: 1.4
 $main-font: sans-serif
 $code-font: monospace
 $headings-font: serif
+
+//
+// FORMS
+// --------------------------------------
+$border-radius: 0
 
 //
 // COLORS
@@ -17,21 +24,43 @@ $headings-font: serif
 // Base
 $hue: 240 !default
 $saturation: 0% !default
-$lightness: 60% !default
+$lightness: 50% !default
 $color: hsl($hue, $saturation, $lightness) !default
+$color-30: change-color($color, $lightness: 30%) !default
+$color-70: change-color($color, $lightness: 70%) !default
+$color-mild: (light: $color-30, dark: $color-70) !default
+
+// Greys
+$grey-05: hsl(0%, 0%, 5%)
+$grey-08: hsl(0%, 0%, 8%)
+$grey-10: hsl(0%, 0%, 10%)
+$grey-15: hsl(0%, 0%, 15%)
+$grey-20: hsl(0%, 0%, 20%)
+$grey-30: hsl(0%, 0%, 30%)
+$grey-40: hsl(0%, 0%, 40%)
+$grey-50: hsl(0%, 0%, 50%)
+$grey-60: hsl(0%, 0%, 60%)
+$grey-70: hsl(0%, 0%, 70%)
+$grey-80: hsl(0%, 0%, 80%)
+$grey-85: hsl(0%, 0%, 85%)
+$grey-90: hsl(0%, 0%, 90%)
+$grey-92: hsl(0%, 0%, 92%)
+$grey-95: hsl(0%, 0%, 95%)
 
 // Shades
-$shades: 4% 8% 12% 16% !default
+$shades: 4% 8% 12% 16% 25% !default
 // Dark
 $black: change-color($color, $lightness: nth($shades, 1)) !default
 $darker: change-color($color, $lightness: nth($shades, 2)) !default
 $dark: change-color($color, $lightness: nth($shades, 3)) !default
 $darkless: change-color($color, $lightness: nth($shades, 4)) !default
+$darkquarter: change-color($color, $lightness: nth($shades, 5)) !default
 // Light
 $white: change-color($color, $lightness: 100% - nth($shades, 1)) !default
 $lighter: change-color($color, $lightness: 100% - nth($shades, 2)) !default
 $light: change-color($color, $lightness: 100% - nth($shades, 3)) !default
 $lightless: change-color($color, $lightness: 100% - nth($shades, 4)) !default
+$lightquarter: change-color($color, $lightness:100% - nth($shades, 5)) !default
 
 // Elements
 $html-bg: (light: $light, dark: $dark) !default
@@ -49,6 +78,15 @@ $link: $color !default
   --nav-bg: #{map-get($nav-bg, light)}
   --scrollbar: #{map-get($scrollbar, light)}
   --link: #{$color}
+  --light-grey: #{$grey-90}
+  --form-bg: #{$grey-92}
+  --form-fg: #{map-get($html-fg, light)}
+  --input-border: #{$grey-60}
+  --input-bg: #{$grey-90}
+  --input-fg: #{$grey-20}
+  --input-fg-disabled: #{$grey-50}
+  --button-fg-disabled: #{$grey-50}
+  --button-fg: #{$grey-05}
 
 // Dark theme
 @media (prefers-color-scheme: dark)
@@ -59,3 +97,12 @@ $link: $color !default
     --nav-bg: #{map-get($nav-bg, dark)}
     --scrollbar: #{map-get($scrollbar, dark)}
     --link: #{$color}
+    --light-grey: #{$grey-10}
+    --form-bg: #{$grey-08}
+    --form-fg: #{map-get($html-fg, dark)}
+    --input-border: #{$grey-40}
+    --input-bg: #{$grey-08}
+    --input-fg: #{$grey-80}
+    --input-fg-disabled: #{$grey-50}
+    --button-fg-disabled: #{$grey-50}
+    --button-fg: #{$grey-05}

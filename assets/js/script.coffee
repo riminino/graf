@@ -5,6 +5,8 @@
 {% include scripts/notification.coffee %}
 {% include scripts/storage.coffee %}
 {% include scripts/login.coffee %}
+{% include scripts/datetime.coffee %}
+{% include scripts/forms.coffee %}
 
 # Get storage
 # --------------------------------------

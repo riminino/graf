@@ -1,8 +1,60 @@
-input, select, textarea, button
-  font-family: inherit
-  font-size: inherit
-  line-height: inherit
+// input, select, textarea, button
+//   font-family: inherit
+//   font-size: inherit
+//   line-height: inherit
+// 
+// button
+//   cursor: pointer
+//   border-radius: 0
 
-button
+form
+  // Width as needed
+  display: inline-block
+  padding: 1rem
+
+  // Separate vertical divs
+  > *:not(:last-child)
+    margin-bottom: 1rem
+  
+// Reset aapearance
+input:not([type=reset]):not([type=submit]):not([type=button]):not([type=range]):not([type=checkbox]):not([type=radio]), textarea
+  appearance: none
+  -webkit-appearance: none
+
+// Remove textarea resize
+textarea
+  resize: none
+
+// Cursor
+button:enabled, select:enabled, input:not([readonly]):enabled, label[for]
   cursor: pointer
-  border-radius: 0
+
+// Disabled
+input:disabled, input[readonly], button:disabled
+  cursor: not-allowed
+
+// Display block
+textarea,
+input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=reset]):not([type=submit]):not([type=color]),
+label:not([for])
+  display: block
+
+// Labels and small notes
+label, small
+  display: inline-block
+  margin: .2rem
+
+// borders and padding
+input:not([type=submit]):not([type=reset]):not([type=button]),
+textarea
+  border-width: 1px
+  border-style: solid
+  border-radius: $border-radius
+  padding: .2rem .5rem
+
+// Hide number arrows
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+  -webkit-appearance: none !important
+input[type=number]
+  -moz-appearance: textfield !important

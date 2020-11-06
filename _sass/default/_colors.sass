@@ -6,9 +6,9 @@ section
   background-color: var(--main-bg)
 
 thead, tfoot
-  background-color: var(--html-bg)
+  background-color: var(--light-grey)
 th, td
-  border-color: var(--html-bg)
+  border-color: var(--light-grey)
 
 nav
   background-color: var(--nav-bg)
@@ -40,3 +40,27 @@ header, footer
   box-shadow: 0 0 5px black
   &.error
     background-color: darkRed
+
+form
+  background-color: var(--form-bg)
+  color: var(--form-fg)
+  input:not([type=submit]):not([type=reset]):not([type=button]), textarea,
+  input[type=color]::-moz-color-swatch, input[type=color]::-webkit-color-swatch
+    border-color: var(--input-border)
+  // background and foreground
+  input:not([type=submit]):not([type=reset]):not([type=button]), textarea
+    background: var(--input-bg)
+    color: var(--input-fg)
+  input:disabled, input[readonly], input::placeholder, small
+    color: var(--input-fg-disabled)
+  input[type=button][disabled], button[disabled]
+    color: var(--button-fg-disabled)
+  input:is([type=submit],[type="reset"],[type=button]), button
+    color: var(--button-fg)
+
+//
+// SYNTAX
+// --------------------------------------
+// Overwrite background
+[class*="highlight"], [class*="highlight"] .w
+  background-color: var(--light-grey)
