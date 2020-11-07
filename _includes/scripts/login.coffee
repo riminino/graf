@@ -3,17 +3,16 @@
   - Login link with href "login"
   - storage.coffee script
 ###
-$.ajaxSetup
-  url: "{{ site.github.api_url }}/graphql"
-  type: "POST"
-
 login =
   link: $ "[href='login']"
-  text: -> "Logout as #{storage.get 'login.user'} (#{storage.get('login.permission')})"
+  text: -> "Logged as #{storage.get 'login.user'} (#{storage.get 'login.role'})"
 
 login.init = ->
   if storage.get("login.token")
-    $.ajaxSetup {headers: "Authorization": "token #{storage.get 'login.token'}"}
+    $.ajaxSetup {headers:
+      "Authorization": "token #{storage.get 'login.token'}"
+      "Accept": "application/vnd.github.v3+json"
+    }
     login.setLink 'logout'
   else
     login.setLink 'login'
@@ -23,28 +22,36 @@ login.serve = (e) ->
   e.preventDefault()
   token = prompt "Paste a GitHub personal token"
   if !token then return
-  $.ajaxSetup {headers: "Authorization": "token #{token}"}
-  storage.set "login.token", token
-  graph = $.ajax data: JSON.stringify { query:
-    'query{viewer{login}repository(owner:"riminino", name:"graf"){viewerPermission isFork}}'
+  $.ajaxSetup {headers:
+    "Authorization": "token #{token}"
+    "Accept": "application/vnd.github.v3+json"
   }
-  graph.done (obj, status) ->
-    storage.set "login.user", obj.data.viewer.login
+  storage.set "login.token", token
+  auth = $.get "{{ site.github.api_url }}/user"
+  auth.done (data, status) ->
+    storage.set "login.user", data.login
       .set "login.created", new Date()
-      .set "login.permission", obj.data.repository.viewerPermission
+    login.permissions()
+    return
+  auth.fail (request, status, error) -> notification "Login #{status} #{error}", 'error'
+  return
+
+login.permissions = ->
+  repo = $.get "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}"
+  repo.fail (request, status, error) -> notification "Permissions #{status} #{error}"
+  repo.done (data, status) ->
+    storage.set "login.permissions", data.permissions
+      .set "repository.fork", data.fork
+      .set "repository.parent", data.parent?.full_name?
+      .set "login.role", if data.permissions.admin then "admin" else "guest"
+    return
+  repo.always () ->
     login.setLink 'logout'
     notification login.text
-    return
-  graph.fail (request, status, error) ->
-    storage.clear 'login'
-    $.ajaxSetup {headers: {}}
-    notification "#{status} #{error}", 'error'
   return
 
 login.logout = (e) ->
   e.preventDefault()
-  storage.clear 'login'
-  $.ajaxSetup {headers: {}}
   login.setLink 'login'
   notification 'Logged out', 'error'
   true
@@ -56,6 +63,8 @@ login.setLink = (status) ->
       .on "click", login.logout
       .attr "title", login.text
   if status is 'login'
+    storage.clear 'login'
+    $.ajaxSetup {headers: {}}
     login.link.text "Login"
       .off "click"
       .on "click", login.serve

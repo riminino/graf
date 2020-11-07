@@ -1,5 +1,6 @@
 ---
 permalink: metadata
+weight: 1
 ---
 # Metadata
 

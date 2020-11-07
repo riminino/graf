@@ -8,7 +8,7 @@ on:
     types: [ opened ]
     branches: [ main ]
     # If at least one path matches a pattern in the paths filter, the workflow runs
-    paths: [ '_data/players/**' ]
+    paths: [ '_data/users/**' ]
 # A workflow run is made up of one or more jobs
 # They can run sequentially or in parallel
 jobs:
@@ -60,7 +60,7 @@ jobs:
           var: ${{ steps.set_vars.outputs.filename }}
         run: |
           echo "compare $filename with ${{ github.actor }}"
-          if [[ "$filename" =~ "${{ github.actor }}" ]]; then
+          if [[ "$filename" =~ "_data/users/${{ github.actor }}/" ]]; then
             echo "filename contain actor"
             exit 0
           else

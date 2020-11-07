@@ -1,12 +1,13 @@
 ---
 permalink: markdown
+weight: 2
 ---
 
 # Markdown
 
 ## Code
 
-Markdown <code class="highlight">```yml</code>
+Fenced <code class="highlight">```yml</code>
 
 ```yml
 city: 1
@@ -30,7 +31,7 @@ array:
 array: [1, 2, "three"]
 {%- endhighlight -%}
 
-Kramdown `~~~ yml`
+Kramdown code block `~~~ yml`
 
 ~~~ yml
 city: 1
@@ -42,7 +43,7 @@ array:
 array: [1, 2, "three"]
 ~~~
 
-Kramdown `{:.language-yml}`
+Kramdown lines indented `{:.language-yml}`
 
 {:.language-yml}
     city: 1

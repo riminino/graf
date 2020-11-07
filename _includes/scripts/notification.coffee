@@ -1,9 +1,9 @@
 notification = (text, cls="") ->
   div = $ '#notification'
   div.text text
-  div.attr 'class', cls
-  div.show()
+    .attr 'class', cls
+    .show()
   setTimeout ->
     div.fadeOut()
-  , 2000
+  , 2500
   return
