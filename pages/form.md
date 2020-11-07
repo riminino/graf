@@ -7,7 +7,7 @@ weight: 3
 
 Top margin
 
-<form markdown="0" prevent-default>
+<form prevent-default>
 <h3>Form title</h3>
 <div>
   <label for="firstname">Age</label>
