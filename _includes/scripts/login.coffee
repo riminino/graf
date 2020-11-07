@@ -40,10 +40,9 @@ login.permissions = ->
   repo = $.get "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}"
   repo.fail (request, status, error) -> notification "Permissions #{status} #{error}"
   repo.done (data, status) ->
-    storage.set "login.permissions", data.permissions
+    storage.set "login.role", if data.permissions.admin then "admin" else "guest"
       .set "repository.fork", data.fork
       .set "repository.parent", data.parent?.full_name?
-      .set "login.role", if data.permissions.admin then "admin" else "guest"
     return
   repo.always () ->
     login.setLink 'logout'
