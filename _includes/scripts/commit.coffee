@@ -11,7 +11,7 @@ commit = (form) ->
     else notification "Get #{status} #{error}", 'error'
     return
   get.done (data, status) ->
-    load = {message: "Update file", content: btoa jsyaml.dump form.serializeJSON(), sha: data.sha}
+    load = {message: "Update file", sha: data.sha, content: btoa jsyaml.dump form.serializeJSON()}
     update = $.ajax url, {method: 'PUT', data: JSON.stringify load}
     update.fail (request, status, error) -> notification "Update #{status} #{error}", 'error'
     update.done (data, status) -> notification "Update #{status}"
