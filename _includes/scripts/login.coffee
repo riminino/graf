@@ -1,10 +1,10 @@
 ###
   Need:
-  - Login link with href "login"
+  - Login link with href "#login"
   - storage.coffee script
 ###
 login =
-  link: $ "[href='login']"
+  link: $ "[href='#login']"
   text: -> "Logged as #{storage.get 'login.user'} (#{storage.get 'login.role'})"
 
 login.init = ->
@@ -16,7 +16,7 @@ login.init = ->
     login.setLink 'logout'
   else
     login.setLink 'login'
-  return
+  true
 
 login.serve = (e) ->
   e.preventDefault()
@@ -33,12 +33,15 @@ login.serve = (e) ->
       .set "login.created", new Date()
     login.permissions()
     return
-  auth.fail (request, status, error) -> notification "Login #{status} #{error}", 'error'
-  return
+  auth.fail (request, status, error) ->
+    notification "Login #{status} #{error}", 'error'
+    login.setLink 'login'
+    return
+  true
 
 login.permissions = ->
   repo = $.get "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}"
-  repo.fail (request, status, error) -> notification "Permissions #{status} #{error}"
+  repo.fail (request, status, error) -> notification "Permissions #{status} #{error}", 'error'
   repo.done (data, status) ->
     storage.set "login.role", if data.permissions.admin then "admin" else "guest"
       .set "repository.fork", data.fork
@@ -46,13 +49,14 @@ login.permissions = ->
     return
   repo.always () ->
     login.setLink 'logout'
-    notification login.text
-  return
+    notification login.text()
+    return
+  true
 
 login.logout = (e) ->
   e.preventDefault()
   login.setLink 'login'
-  notification 'Logged out', 'error'
+  notification 'Logged out', 'info'
   true
 
 login.setLink = (status) ->
@@ -68,6 +72,6 @@ login.setLink = (status) ->
       .off "click"
       .on "click", login.serve
       .attr 'title', "Login link"
-  return
+  true
 
 login.init()

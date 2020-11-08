@@ -2,10 +2,10 @@
 {%- assign repo = site.github.public_repositories | where: "full_name", site.github.repository_nwo | first -%}
 <footer>
   <ul>
-    <li><a href="{{ gh.repository_url }}">GitHub</a></li>
-    <li>Repo updated: {% include widgets/datetime.html datetime=repo.updated_at replace=true %}</li>
+    <li><a href="{{ gh.repository_url }}">GitHub</a> updated {% include widgets/datetime.html datetime=repo.updated_at replace=true %}</li>
+    <li><a href="#logs">Logs</a></li>
   </ul>
   <ul>
-    <li><a href="#top">top</a></li>
+    <li><a href="#top">Top</a></li>
   </ul>
 </footer>

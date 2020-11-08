@@ -5,16 +5,16 @@ commit = (form) ->
   get = $.get url
   get.fail (request, status, error) ->
     if error == 'Not Found'
-      load = {message: "Create file", content: btoa yml}
+      load = {message: "Create #{path}", content: btoa yml}
       create = $.ajax url, {method: 'PUT', data: JSON.stringify load}
-      create.fail (request, status, error) -> notification "Create #{status} #{error}", 'error'
-      create.done (data, status) -> notification "Create #{status}"
+      create.fail (request, status, error) -> notification "#{load.message} #{status} #{error}", 'error'
+      create.done (data, status) -> notification "#{load.message} #{status}"
     else notification "Get #{status} #{error}", 'error'
     return
   get.done (data, status) ->
     content = if form.data('append')? then atob(data.content) + yml else yml
-    load = {message: "Update file", sha: data.sha, content: btoa content}
+    load = {message: "Update #{path}", sha: data.sha, content: btoa content}
     update = $.ajax url, {method: 'PUT', data: JSON.stringify load}
-    update.fail (request, status, error) -> notification "Update #{status} #{error}", 'error'
-    update.done (data, status) -> notification "Update #{status}"
+    update.fail (request, status, error) -> notification "#{load.message} #{status} #{error}", 'error'
+    update.done (data, status) -> notification "#{load.message} #{status}"
   return

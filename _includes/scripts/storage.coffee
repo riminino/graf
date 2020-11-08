@@ -22,6 +22,7 @@ storage =
     if !localStorage.getItem(storage.key())? then storage.store {
       "storage":
         "created": new Date()
+        "logs": []
       "repository":
         "url": "{{ site.github.repository_url }}"
         "updated": "{{ 'now' | date_to_xmlschema }}"
@@ -30,7 +31,7 @@ storage =
   clear: (key) ->
     obj = storage.get()
     if key?
-      storage.prop key, null, obj
+      storage.prop key, undefined, obj
       storage.store obj
     else
       localStorage.removeItem storage.key()
