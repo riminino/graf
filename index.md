@@ -5,7 +5,7 @@ title: Home
 
 Top margin
 
-<form prevent-default data-personal>
+<form prevent-default data-append>
 <h3>Profile</h3>
 
 <div>
