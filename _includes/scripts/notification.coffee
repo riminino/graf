@@ -1,36 +1,39 @@
-notification_el = $ '#notification'
-notification_el.on 'click', -> $(@).empty().hide()
+# Render a single log for details
+return_log = (log) ->
+  span = $('<span/>', {
+    datetime: log.time
+    'data-replace': true
+  })
+  dateTime span
+  div = $('<div/>').append([
+    span,
+    $('<code/>', {text: log.text, class: log.cls})
+  ])
+  return div
 
+# Show notification on screen top
 notification = (text, cls="") ->
-  # Store in logs
+  notification_el = $ '#notification'
+  # Store in storage
   logs_array = storage.get 'storage.logs'
   logs_array.unshift {time: new Date(), text: text, cls: cls}
-  storage.set 'storage.logs', logs_array.slice(0, 15)
+  storage.set 'storage.logs', logs_array.slice(0, 20)
+  # Append in logs details
+  $("summary:contains('Logs')").parent("details").prepend return_log {
+    time: new Date()
+    text: text
+    cls: cls
+  }
   # Show notification
   notification_el.empty().append(
     $('<div/>', {text: text, class: cls})
   ).show()
+  # Fade out timer
   setTimeout ->
     notification_el.fadeOut()
   , 2500
   return
 
-
-$("a[href='#logs']").on "click", (e) ->
-  e.preventDefault()
-  notification_el.empty().show()
-  for log in storage.get 'storage.logs'
-    span = $('<span/>', {
-      datetime: log.time
-      'data-replace': true
-    })
-    dateTime span
-    notification_el.append(
-      $('<div/>', {
-        class: log.cls
-      }).append([
-        span,
-        $('<span/>', {text: ": #{log.text}"})
-      ])
-    )
-  true
+# Populate logs details
+$("summary:contains('Logs')").parent("details").append(Array.from(storage.get('storage.logs'), (log) -> return_log log
+))

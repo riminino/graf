@@ -10,8 +10,11 @@ body
 template, [hidden]
   display: none !important
 
-details summary
-  cursor: pointer
-
 span
   display: inline
+
+//
+// HELPER CLASS
+// --------------------------------------
+.if-empty:not(:only-of-type)
+  display: none
