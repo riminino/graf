@@ -6,11 +6,19 @@ html
 h1, h2, h3, h4, h5, h6
   font-family: $headings-font
 
-// h1
+//
+// HEADINGS
+// --------------------------------------
+
+// h1 normalize
 *:is(article, aside, nav, section) h1
   font-size: 2em
-  margin-block-start: .67em
-  margin-block-end: .67em
+
+@for $index from 1 through length($h-margins)
+  $m: nth($h-margins, $index)
+  *:is(article, aside, nav, section) h#{$index}
+    margin-top: #{$m*2.5}em
+    margin-bottom: #{$m}em
 
 b, strong
   font-weight: 600

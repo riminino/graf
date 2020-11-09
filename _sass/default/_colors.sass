@@ -19,6 +19,17 @@ nav
       &.active
         color: var(--html-fg)
 
+summary
+  color: var(--link)
+  display: inline list-item
+  &:hover, &::marker
+    color: var(--html-fg)
+  &::after
+    display: table
+    clear: both
+    content: ""
+    margin-bottom: 1em
+
 a
   color: var(--link)
   &:hover
@@ -36,13 +47,7 @@ header, footer
   scrollbar-width: auto
 
 #notification
-  box-shadow: 0 0 5px black
-  div
-    background-color: DarkGreen
-    &.error
-      background-color: DarkRed
-    &.info
-      background-color: DarkBlue
+  box-shadow: 0 0 5px Black
 
 form
   background-color: var(--form-bg)
@@ -60,6 +65,21 @@ form
     color: var(--button-fg-disabled)
   input:is([type=submit],[type="reset"],[type=button]), button
     color: var(--button-fg)
+
+//
+// ALERTS
+// --------------------------------------
+.success, .info, .warning, .danger
+  h1, h2, h3, h4, h5, h6
+    background: inherit
+    color: inherit
+
+@each $alert-name, $alert in $alerts
+  .#{$alert-name}
+    background: var(--#{$alert-name}-bg)
+    color: var(--#{$alert-name}-fg)
+    a:link, a:visited
+      color: var(--#{$alert-name}-fg)
 
 //
 // SYNTAX

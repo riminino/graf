@@ -34,14 +34,14 @@ login.serve = (e) ->
     login.permissions()
     return
   auth.fail (request, status, error) ->
-    notification "Login #{status} #{error}", 'error'
+    notification "Login #{status} #{error}", 'danger'
     login.setLink 'login'
     return
   true
 
 login.permissions = ->
   repo = $.get "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}"
-  repo.fail (request, status, error) -> notification "Permissions #{status} #{error}", 'error'
+  repo.fail (request, status, error) -> notification "Permissions #{status} #{error}", 'danger'
   repo.done (data, status) ->
     storage.set "login.role", if data.permissions.admin then "admin" else "guest"
       .set "repository.fork", data.fork
@@ -49,7 +49,7 @@ login.permissions = ->
     return
   repo.always () ->
     login.setLink 'logout'
-    notification login.text()
+    notification login.text(), 'success'
     return
   true
 
