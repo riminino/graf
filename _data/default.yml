@@ -1,3 +1,6 @@
-name: whith schema
-color_1: '#d83a3a'
-color_2: '#d9d143'
+name: Name
+style:
+  name: 'Style[name]'
+  body:
+    name: 'Style[body][name]'
+  surname: 'Style[surname]'
