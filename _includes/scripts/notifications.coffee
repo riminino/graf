@@ -7,12 +7,12 @@ return_log = (log) ->
   dateTime span
   div = $('<div/>').append([
     span,
-    $('<code/>', {text: log.text, class: log.cls})
+    $('<code/>', {text: log.text, class: log.cls ? 'success'})
   ])
   return div
 
 # Show notification on screen top
-notification = (text, cls="") ->
+notification = (text, cls="success") ->
   notification_el = $ '#notification'
   # Store in storage
   logs_array = storage.get 'storage.logs'

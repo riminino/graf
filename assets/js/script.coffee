@@ -8,7 +8,7 @@
 {% include scripts/forms.coffee %}
 {% include scripts/commit.coffee %}
 {% include scripts/pull_request.coffee %}
-{% include scripts/notification.coffee %}
+{% include scripts/notifications.coffee %}
 
 # Get storage
 # --------------------------------------
