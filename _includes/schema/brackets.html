@@ -1,0 +1,8 @@
+{%- assign out = "" -%}
+{%- for p in include.input -%}
+  {%- if forloop.first -%}
+    {%- assign out = p -%}
+  {%- else -%}
+    {%- assign out = out | append: "[" | append: p | append: "]" -%}
+  {%- endif -%}
+{%- endfor -%}{{ out }}

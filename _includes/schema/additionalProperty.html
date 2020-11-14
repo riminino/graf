@@ -1,0 +1,15 @@
+{%- assign prop = "" | split: "" | push: "" | push: include.aP.last.additionalProperties -%}
+{% comment %} -------------------- reduce name -------------------- {% endcomment %}
+{% capture new_name %}{%- include schema/brackets.html input=include.parent -%}{% endcapture %}
+<div class="additional-property">
+  <div>
+    <label markdown="1">Additional property for *{{ new_name | default: "root" }}* <a href="#" prevent-default data-add-property="{{ new_name }}">Add</a></label>
+    <template>
+      <div class="property">
+        {%- assign additional = true -%}
+        {% include schema/loop.html property=prop %}
+        {%- assign additional = false -%}
+      </div>
+    </template>
+  </div>
+</div>

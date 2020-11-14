@@ -1,0 +1,32 @@
+{% comment %} -------------------- Convert type -------------------- {% endcomment %}
+{%- case include.type -%}
+  {%- when "string" -%}
+    {%- case include.format -%}
+      {%- when "email" %}{%- assign type = "email" -%}
+      {%- when "uri" or "hostname" %}{%- assign type = "url" -%}
+      {%- when "date" %}{%- assign type = "date" -%}
+      {%- when "time" %}{%- assign type = "time" -%}
+      {%- else -%}
+        {%- case include.widget -%}
+          {%- when "color" %}{%- assign type = "color" -%}
+          {%- when "textarea" %}{%- assign type = "textarea" -%}
+          {%- when "hidden" %}{%- assign type = "hidden" -%}
+          {%- when "password" %}{%- assign type = "password" -%}
+          {%- when "tel" %}{%- assign type = "tel" -%}
+          {%- else -%}{%- assign type = "text" -%}
+          {%- endcase -%}
+      {%- endcase -%}
+  {%- when "integer" or "number" -%}
+    {%- case include.widget -%}
+      {%- when "range" -%}{%- assign type = "range" -%}
+      {%- when "radio" -%}{%- assign type = "radio" -%}
+      {%- else -%}{%- assign type = "number" -%}
+      {%- endcase -%}
+  {%- when "boolean" -%}
+    {%- case include.widget -%}
+      {%- when "radio" -%}{%- assign type = "radio" -%}
+      {%- else -%}{%- assign type = "checkbox" -%}
+      {%- endcase -%}
+  {%- else -%}{%- assign type = include.type | default: "text" -%}
+  {%- endcase -%}
+{{ type }}

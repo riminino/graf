@@ -1,64 +1,75 @@
+// Scrollbars
+*
+  scrollbar-color: var(--scrollbar)
+  scrollbar-width: auto
+
 html, body
   background-color: var(--html-bg)
   color: var(--html-fg)
 
+header, footer
+  color: var(--mild)
+
 section
   background-color: var(--main-bg)
-
-thead, tfoot
-  background-color: var(--light-grey)
-th, td
-  border-color: var(--light-grey)
 
 nav
   background-color: var(--nav-bg)
   ul li
     a, span
-      &:hover
+      &:hover, &.active
         background-color: var(--main-bg)
-      &.active
-        color: var(--html-fg)
 
 summary
   color: var(--link)
   &:hover, &::marker
     color: var(--html-fg)
 
+// LINKS
 a
   color: var(--link)
-  &:hover
-    border-color: var(--link)
-
-header, footer
-  color: var(--link)
-  a
+  &:hover, &.active
     color: var(--html-fg)
-    &:hover
-      border-color: var(--html-fg)
 
-*
-  scrollbar-color: var(--scrollbar)
-  scrollbar-width: auto
+//
+// TABLES
+// --------------------------------------
+thead, tfoot
+  background-color: var(--light-grey)
+th, td
+  border-color: var(--light-grey)
 
-#notification
-  box-shadow: 0 0 5px Black
-
+//
+// FORMS
+// --------------------------------------
 form
   background-color: var(--form-bg)
   color: var(--form-fg)
-  input:not([type=submit]):not([type=reset]):not([type=button]), textarea,
-  input[type=color]::-moz-color-swatch, input[type=color]::-webkit-color-swatch
-    border-color: var(--input-border)
-  // background and foreground
-  input:not([type=submit]):not([type=reset]):not([type=button]), textarea
-    background: var(--input-bg)
-    color: var(--input-fg)
-  input:disabled, input[readonly], input::placeholder, small
-    color: var(--input-fg-disabled)
-  input[type=button][disabled], button[disabled]
-    color: var(--button-fg-disabled)
-  input:is([type=submit],[type="reset"],[type=button]), button
-    color: var(--button-fg)
+  
+// FIELDS
+// --------------------------------------
+// Borders
+input:not([type=submit]):not([type=reset]):not([type=button]), textarea,
+input[type=color]::-moz-color-swatch, input[type=color]::-webkit-color-swatch
+  border-color: var(--input-border)
+
+// Background and foreground
+input:not([type=submit]):not([type=reset]):not([type=button]), textarea
+  background: var(--input-bg)
+  color: var(--input-fg)
+
+// Special
+input:disabled, input[readonly], input::placeholder, small
+  color: var(--input-fg-disabled)
+
+// BUTTONS
+// --------------------------------------
+input[type=submit], input[type="reset"], input[type=button], button
+  color: var(--button-fg)
+
+// Special
+input[type=button][disabled], button[disabled]
+  color: var(--button-fg-disabled)
 
 //
 // ALERTS
@@ -78,6 +89,7 @@ form
 //
 // SYNTAX
 // --------------------------------------
-// Overwrite background
-[class*="highlight"], [class*="highlight"] .w
-  background-color: var(--light-grey)
+
+// Overwrite background, there are many backgrounds to overwrite
+// [class*="highlight"], [class*="highlight"] .w
+//   background-color: var(--light-grey)

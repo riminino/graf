@@ -1,31 +1,42 @@
 ---
 permalink: form
 weight: 3
+schema:
+  default:
+    title: Profile
+    properties:
+      name:
+        title: Name
+        type: string
+        required: true
+      color_1:
+        title: Color 1
+        type: string
+        widget: color
+      color_2:
+        title: Color 2
+        type: string
+        widget: color
 ---
 # Form
 
-<form prevent-default>
-<h3>Profile</h3>
+**Attributes**
 
-<div>
-  <label for="name">Name</label>
-  <input type="text" id="name" name="name" required>
-</div>
+- `live`  
 
-<div>
-  <label for="color1">Color 1</label>
-  <input type="color" id="color1" name="color1">
-</div>
+  `login.role = admin` & `repository.fork = false`  
+  will commit in `_data/<data-path>.yml`  
 
-<div>
-  <label for="color2">Color 2</label>
-  <input type="color" id="color2" name="color2">
-</div>
+  `login.role = admin` & `repository.fork = true`  
+  will pull request in `_data/users/<user>/<data-path>.yml`  
 
-<!-- Button -->
-<div>
-  <input type="submit" value="Submit">
-  <input type="reset" name="" value="Reset">
-</div>
+  If not present will log the form in yaml
 
-</form>
+- `data-path`  
+  Path and filename (no extension) inside `_data/`  
+  If not present is `default` saved in `_data/default.yml`
+
+- `data-append`  
+  If present will append, otherwise will replace
+
+{% include schema/form.html schema=page.schema.default %}

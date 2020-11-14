@@ -14,5 +14,10 @@
 # --------------------------------------
 console.log storage.get()
 
+# Prevent default events
 $("a[prevent-default]").on "click", (e) -> e.preventDefault()
 $("form[prevent-default]").on "submit", (e) -> e.preventDefault()
+
+# Initialize serialize
+$.serializeJSON.defaultOptions.parseAll = true
+$.serializeJSON.defaultOptions.skipFalsyValuesForTypes = "text,number,date,password,tel,email".split ","

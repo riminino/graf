@@ -31,8 +31,11 @@ notification = (text, cls="") ->
   # Fade out timer
   setTimeout ->
     notification_el.fadeOut()
-  , 2500
+  , 3000
   return
+
+# Click to hide
+$('#notification').on 'click', -> $(@).hide()
 
 # Populate logs details
 $("summary:contains('Logs')").parent("details").append(Array.from(storage.get('storage.logs'), (log) -> return_log log

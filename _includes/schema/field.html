@@ -1,0 +1,122 @@
+{%- assign label = include.parent | slice: -1 -%}
+{%- assign att = include.attributes -%}
+{% comment %} -------------------- reduce name -------------------- {% endcomment %}
+{% capture name %}{%- include schema/brackets.html input=include.parent -%}{% endcapture %}
+{% comment %} -------------------- Capture TYPE -------------------- {% endcomment %}
+{% capture type %}{% include schema/type.html type=att.type format=att.format widget=att.widget %}{% endcapture %}
+{% comment %} -------------------- Hidden -------------------- {% endcomment %}
+{%- if type == "hidden" -%}
+<input
+  type="{{ type }}"
+  id="{{ name }}"
+  name="{{ name }}"
+  value="{{ att.default }}">
+{%- endif -%}
+{% comment %} -------------------- Open div -------------------- {% endcomment %}
+{% if att.type == "array" %}<div class="array">{% endif %}
+<div>
+{% comment %} -------------------- Label -------------------- {% endcomment %}
+{%- assign name = name | default: '[]' -%}
+<label
+  for="{{ name }}"
+  {% if "checkbox,radio" contains type and att.enum == nil %} class="boolean"{% endif %}
+  {% if att.tooltip %} title="{{ att.tooltip }}"{% endif %}>
+  {{ att.title | default: name }}{% if att.required or schema.required contains label %}<sup>*</sup>{% endif %}
+  {% comment %} -------------------- item Add -------------------- {% endcomment %}
+  {% if att.type == "array" %} <a href="#{{ label }}"
+  data-index="0"
+  {% if att.minItems and att.minItems != 0 %}data-index-min="{{ att.minItems }}"{% endif %}
+  {% if att.maxItems and att.maxItems != 0 %}data-index-max="{{ att.maxItems }}"{% endif %}
+  data-add="{{ label }}"
+  title="Add item"
+  prevent-default>Add item</a>{% endif %}
+  {% comment %} -------------------- item Remove -------------------- {% endcomment %}
+{% if template and object == nil %}
+  <a href="#{{ label }}" title="Remove item" data-remove="{{ label }}" prevent-default>Remove</a>{% endif %}
+  {% comment %} ----------------- property Remove -------------------- {% endcomment %}
+{% if additional %}
+  <a href="#{{ label }}" title="Remove property" data-remove-property="{{ label }}" prevent-default>Remove</a>{% endif %}
+</label>
+{% comment %} -------------------- Enum -------------------- {% endcomment %}
+{% if att.enum %}
+  {% if att.widget == "radio" %}{% for item in att.enum %}
+  <label class="radio"><input
+    type="{{ type }}"
+    id="{{ name }}"
+    name="{{ name }}"
+    {% if att.default == item %} checked{% endif %}
+    {% if att.type == "number" %} data-number="true"{% endif %}
+    {% if att.type == "boolean" %} data-boolean="true"{% endif %}
+    {% if att.disabled %} disabled{% endif %}
+    {% if att.readonly or attributes.readOnly %} readonly="true"{% endif %}
+    value="{{ item }}">{{ item }}</label>
+  {% endfor %}{% else %}
+  <select
+    id="{{ name }}"
+    name="{{ name }}"
+    aria-label="{{ label }}"
+    {% if att.required %} required{% endif %}
+    {% if att.disabled %} disabled="true"{% endif %}
+    {% if att.readonly or attributes.readOnly %} readonly="true"{% endif %}
+    {% if att.multiple %} multiple{% endif %}
+    type="{{ type }}">
+    {% if att.placeholder %}<option value="">{{ placeholder }}</option>{% endif %}
+    {% for item in att.enum %}
+      {% if item.first %}<option value="{{ item.value }}"{% if item.value == att.value %} selected{% endif %}>{{ item.value }}</option>
+      {% else %}<option value="{{ item }}"{% if item == att.default %} selected{% endif %}>{% if att.enumNames %}{{ att.enumNames[forloop.index0] }}{% else %}{{ item }}{% endif %}</option>{% endif %}
+    {% endfor %}
+  </select>
+  {% endif %}
+{% else %}
+{% comment %} -------------------- Input -------------------- {% endcomment %}
+  {%- assign types = "text,number,date,time,url,email,password,tel,checkbox,radio,color,range" -%}
+  {%- if types contains type -%}
+  <input
+    type="{{ type }}"
+    id="{{ name }}"
+    name="{{ name }}"
+    aria-label="{{ label }}"
+    {% if "checkbox,radio" contains type %}value="true"{% if att.default %} checked{% endif %}{% else %}{% if att.default %} value="{{ att.default }}"{% endif %}{% endif %}
+    {% if att.minimum %} min="{{ att.minimum }}"{% endif %}
+    {% if att.maximum %} max="{{ att.maximum }}"{% endif %}
+    {% if att.type == "boolean" %} data-boolean="true"{% endif %}
+    {% if att.multiple %} multiple{% endif %}
+    {% if att.disabled %} disabled="true"{% endif %}
+    {% if att.readonly or att.readOnly %} readonly="true"{% endif %}
+    {% if att.maxLength %} maxlength="{{ att.maxLength }}"{% endif %}
+    {% if att.minLength %} minlength="{{ att.minLength }}"{% endif %}
+    {% if att.placeholder %} placeholder="{{ att.placeholder }}"{% endif %}
+    {% if att.autocomplete %} autocomplete="{{ att.autocomplete }}"{% endif %}
+    {% if att.autofocus %} autofocus{% endif %}
+    {% if att.required or schema.required contains label %} required{% endif %}
+    {% if att.multipleOf %} step="{{ att.multipleOf }}"{% endif %}>
+  {%- if type == "range" -%}<output id="{{ name }}_output" for="{{ name }}"></output>{%- endif -%}
+{% comment %} -------------------- Textarea -------------------- {% endcomment %}
+  {%- elsif type == "textarea" -%}
+  <textarea
+    type="text"
+    id="{{ name }}"
+    name="{{ name }}"
+    aria-label="{{ label }}"
+    {% if att.disabled %} disabled="true"{% endif %}
+    {% if att.placeholder %} placeholder="{{ att.placeholder }}"{% endif %}
+    {% if att.readonly or att.readOnly %} readonly="true"{% endif %}
+    {% if att.rows %} rows="{{ att.rows }}"{% endif %}
+    {% if att.cols %} cols="{{ att.cols }}"{% endif %}
+    {% if att.required or schema.required contains label %} required{% endif %}>{{ att.default }}</textarea>
+{% comment %} -------------------- End types -------------------- {% endcomment %}
+  {%- else -%}unknow type: {{ type }}
+  {%- endif -%}
+{% comment %} -------------------- Close enum -------------------- {% endcomment %}
+{% endif %}
+{% comment %} ----------------- Description / units -------------------- {% endcomment %}
+{% if att.description or att.unit %}<span>{{ "" | split: "" | push: att.description | push: att.unit | join: " " | strip | markdownify | remove: "<p>" | remove: "</p>" }}</span>{% endif %}
+{% comment %}
+- {{name}} {{att.type}}
+- {{include.parent|inspect}}
+- {{att|inspect}}
+{% endcomment %}
+{% comment %} Close array div {% endcomment %}
+{% if att.type == "array" %}</div>{% endif %}
+{% comment %} Close array div {% endcomment %}
+</div>

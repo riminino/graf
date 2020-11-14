@@ -21,19 +21,18 @@ Top margin
 <form prevent-default>
 <h3>Form title</h3>
 <div>
-  <label for="firstname">Age</label>
-  <input type="number" id="firstname" name="firstname" placeholder="First name" required>
+  <label for="age">Age</label>
+  <input type="number" id="age" name="age" placeholder="Age" required>
 </div>
 <div>
-  <label for="lastname">Color</label>
-    <input type="color" id="lastname" name="lastname" placeholder="Last name" required>
+  <label for="color">Color</label>
+    <input type="color" id="color" name="color">
 </div>
 <div>
-  <label for="lastname">Birth date</label>
-    <input type="date" id="lastname" name="lastname" placeholder="Last name" required>
+  <label for="birt_date">Birth date</label>
+    <input type="date" id="birt_date" name="birt_date" required>
 </div>
 <div>
-  <!-- Markup example 2: input is after label -->
   <label for="email">Email address</label>
   <input type="email" id="email" name="email" placeholder="Email address" required>
   <small>We'll never share your email with anyone else.</small>
@@ -42,17 +41,17 @@ Top margin
 <input type="text" placeholder="Readonly" readonly>
 <div>
   <label for="range">Range</label><output></output>
-  <input type="range" id="range">
+  <input type="range" id="range" name="range">
 </div>
 <!-- Select -->
 <div>
   <label for="country">Country</label>
   <select id="country">
     <option selected>Choose...</option>
-    <optgroup label="Group">
-      <option>...</option>
+    <optgroup label="Europe">
+      <option value="italy">Italy</option>
     </optgroup>
-    <option>...</option>
+    <option value="usa">USA</option>
   </select>
 </div>
 
@@ -60,31 +59,26 @@ Top margin
 <div>
   <label>Gender</label>
   <label for="male">
-    <input type="radio" id="male" name="gender" value="male" checked>
-    Male
+    <input type="radio" id="male" name="gender" value="male" checked> Male
   </label>
   <label for="female">
-    <input type="radio" id="female" name="gender" value="female">
-    Female
+    <input type="radio" id="female" name="gender" value="female"> Female
   </label>
   <label for="other">
-    <input type="radio" id="other" name="gender" value="other">
-    Other
+    <input type="radio" id="other" name="gender" value="other"> Other
   </label>
 </div>
 
-<textarea name="name" rows="5" placeholder="Text"></textarea>
+<textarea name="textarea" id="textarea" rows="5" placeholder="Text"></textarea>
 
 <!-- Checkbox -->
 <div>
   <label>Checkboxes</label>
   <label for="terms">
-    <input type="checkbox" id="terms" name="terms">
-    I agree to the
+    <input type="checkbox" id="terms" name="terms"> I agree to the
   </label>
   <label for="bio">
-    <input type="checkbox" id="bio" name="bio">
-    Terms and Conditions
+    <input type="checkbox" id="bio" name="bio"> Terms and Conditions
   </label>
 </div>
 

@@ -1,0 +1,95 @@
+{%- assign attributes = include.property[1] -%}
+{%- assign label = include.property[0] -%}
+{% comment %} -------------------- OBJECT -------------------- {% endcomment %}
+{%- if attributes.type == "object" -%}
+  <h4>
+    {{ attributes.title | default: include.property[0] }}
+    {% if template %}
+      <a href="#{{ template }}" title="Remove item" data-remove="{{ label }}" prevent-default>Remove</a>
+    {% endif %}
+  </h4>
+  {%- assign object = true -%}
+  {%- assign parent = parent | push: include.property[0] -%}
+  {%- assign aP = aP | push: attributes -%}
+  {%- assign father_stack = father_stack | push: include.property[0] -%}
+  {%- assign save_parent = parent -%}
+  {% for property in attributes.properties %}
+{% include schema/loop.html property=property %}
+    {%- assign parent = parent | pop -%}
+  {% endfor %}
+{% comment %} -------------------- Additional Property --------------- {% endcomment %}
+  {%- if aP.last.additionalProperties -%}
+    {%- assign additional = true -%}
+    {%- assign parent = father_stack -%}
+    {% include schema/additionalProperty.html parent=parent aP=aP %}
+    {%- assign parent = save_parent -%}
+    {%- assign aP = aP | pop -%}
+    {%- assign father_stack = father_stack | pop -%}
+    {%- assign additional = nil -%}
+  {%- endif -%}
+  {%- assign object = nil -%}
+{% comment %} -------------------- ARRAY -------------------- {% endcomment %}
+{%- elsif attributes.type == "array" -%}{%- unless template_stack contains label -%}
+{% comment %} -------------------- Open div -------------------- {% endcomment %}
+<div class="array">
+<div>
+{% comment %} -------------------- reduce name -------------------- {% endcomment %}
+{% capture name %}{%- include schema/brackets.html input=label -%}{% endcapture %}
+{% comment %} -------------------- Label -------------------- {% endcomment %}
+<label
+  {% if attributes.tooltip %} title="{{ attributes.tooltip }}"{% endif %}>
+  {{ attributes.title | default: name }}{% if attributes.required or schema.required contains label %}<sup>*</sup>{% endif %}
+  {% comment %} -------------------- item Add -------------------- {% endcomment %}
+  <a href="#{{ label }}"
+  data-index="0"
+  {% if attributes.minItems and attributes.minItems != 0 %}data-index-min="{{ attributes.minItems }}"{% endif %}
+  {% if attributes.maxItems and att.maxItems != 0 %}data-index-max="{{ attributes.maxItems }}"{% endif %}
+  data-add="{{ label }}"
+  title="Add item"
+  prevent-default>Add</a>
+  {% comment %} -------------------- item Remove -------------------- {% endcomment %}
+{% if template and object == nil %}
+  <a href="#{{ label }}" title="Remove item" data-remove="{{ label }}" prevent-default>Remove</a>{% endif %}
+</label>
+{% comment %} Close div {% endcomment %}
+</div>
+{% comment %} -------------------- array template -------------------- {% endcomment %}
+  {%- assign template_stack = template_stack | push: label -%}
+  {%- assign template = include.property[0] -%}
+  {%- assign label = include.property[0] | append: "[]" -%}
+  <template>
+  <div class="array-item">
+  {%- assign prop = "" | split: "" | push: label -%}
+  {%- if attributes.items.type != nil -%}
+    {%- assign prop = prop | push: attributes.items -%}
+  {%- elsif attributes.items.ref or attributes.items["$ref"] -%}
+    {%- assign ref = attributes.items -%}
+    {%- assign prop = prop | push: ref -%}
+  {%- else -%}Array items has no `type` nor `ref`
+  {%- endif -%}
+{% include schema/loop.html property=prop %}
+  {%- assign parent = parent | pop -%}
+  {%- assign template = nil -%}
+  </div>
+  </template>
+{%- endunless -%}
+{% comment %} Close array div {% endcomment %}
+</div>
+{% comment %} -------------------- REFERENCE -------------------- {% endcomment %}
+{%- elsif attributes.ref or attributes["$ref"] -%}
+  {%- assign ref = attributes.ref | default: attributes["$ref"] -%}
+  {%- assign path = ref | split: "/" -%}
+  {%- if path.first == "#" -%}
+    {%- assign schema_ref = schema -%}
+    {% for level in path offset:1 %}
+      {%- assign schema_ref = schema_ref[level] -%}
+    {% endfor %}
+    {%- assign prop = "" | split: "" | push: include.property[0] | push: schema_ref -%}
+    {% include schema/loop.html property=prop %} 
+  {%- else -%}Remote reference
+  {%- endif -%}
+{% comment %} -------------------- FIELD -------------------- {% endcomment %}
+{%- elsif "string,number,integer,boolean" contains attributes.type -%}
+  {%- assign parent = parent | push: include.property[0] -%}
+  {% include schema/field.html parent=parent attributes=attributes %}
+{%- endif -%}

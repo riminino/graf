@@ -1,0 +1,29 @@
+{%- assign schema = include.schema -%}
+{%- assign template_stack = "" | split: "" -%}
+{%- assign title = schema.title | default: schema.file -%}
+{%- assign aP = "" | split: "" | push: schema -%}
+{%- assign father_stack = "" | split: "" -%}
+<div><form
+  live
+  data-file="{{ schema.file }}"
+  data-type="{{ schema.type }}"
+  prevent-default>
+<h3>{{ title | default: "Schema" }}</h3>
+{%- if schema == nil -%}<p>Schema not found</p>{%- endif -%}
+{%- if schema.description -%}<p>{{ schema.description }}</p>{%- endif -%}
+{% for property in schema.properties %}
+{%- assign parent = "" | split: "" -%}
+{% include schema/loop.html property=property %}
+{% endfor %}
+{% comment %} -------------------- Additional property ---------------- {% endcomment %}
+{%- if aP.last.additionalProperties -%}
+  {%- assign parent = father_stack -%}
+  {% include schema/additionalProperty.html parent="" aP=aP %}
+{%- endif -%}
+{% comment %} -------------- Tiemstamp for array -------------------- {% endcomment %}
+{%- if schema.type == "array" -%}<input type="hidden" id="timestamp" name="timestamp" value="">{%- endif -%}
+{% comment %} -------------------- Buttons -------------------- {% endcomment %}
+<div class="buttons">
+  <button type="submit">Submit</button> <button type="reset">Reset</button>
+</div>
+</form></div>

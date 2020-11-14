@@ -1,0 +1,35 @@
+title: A customizable registration form
+description: A simple form with additional properties example.
+type: object
+file: additionalProperties
+additionalProperties:
+  type: number
+properties:
+  name:
+    type: string
+    title: Name
+    autofocus: true
+    default: Name
+  style:
+    type: object
+    properties:
+      name:
+        type: string
+        title: 'Style[name]'
+        default: 'Style[name]'
+      body:
+        type: object
+        properties:
+          name:
+            type: string
+            title: 'Style[body][name]'
+            default: 'Style[body][name]'
+        additionalProperties:
+          type: number
+      surname:
+        type: string
+        title: 'Style[surname]'
+        default: 'Style[surname]'
+    additionalProperties:
+      type: string
+      format: email
