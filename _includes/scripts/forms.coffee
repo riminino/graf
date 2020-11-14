@@ -58,7 +58,7 @@ $("form").each ->
   # Submit event
   form.on "submit", (e) ->
     # Check if is live
-    if form.data('live')?
+    if form.attr('live')?
       # Check if logged
       if !storage.get 'login.user'
         notification 'Need to login', 'error'
