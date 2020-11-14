@@ -1,7 +1,7 @@
 title: A customizable registration form
 description: A simple form with additional properties example.
 type: object
-file: additionalProperties
+path: additionalProperties
 additionalProperties:
   type: number
 properties:

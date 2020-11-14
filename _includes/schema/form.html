@@ -5,7 +5,7 @@
 {%- assign father_stack = "" | split: "" -%}
 <div><form
   live
-  data-file="{{ schema.file }}"
+  data-path="{{ schema.path }}"
   data-type="{{ schema.type }}"
   prevent-default>
 <h3>{{ title | default: "Schema" }}</h3>
