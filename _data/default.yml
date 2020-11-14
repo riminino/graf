@@ -1,9 +1,6 @@
-name: as
-color1: '#000000'
-color2: '#000000'
-name: appended
-color1: '#e04b4b'
-color2: '#3cca68'
-name: reappend
-color1: '#000000'
-color2: '#ffffff'
+name: Name
+style:
+  name: 'Style[name]'
+  body:
+    name: 'Style[body][name]'
+  surname: 'Style[surname]'
