@@ -27,6 +27,7 @@ login.serve = (e) ->
     "Accept": "application/vnd.github.v3+json"
   }
   storage.set "login.token", token
+  login.link.prop "disabled", true
   auth = $.get "{{ site.github.api_url }}/user"
   auth.done (data, status) ->
     storage.set "login.user", data.login
@@ -60,6 +61,7 @@ login.logout = (e) ->
   true
 
 login.setLink = (status) ->
+  login.link.prop "disabled", false
   if status is 'logout'
     login.link.text "Logout"
       .off "click"

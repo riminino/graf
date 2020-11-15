@@ -4,6 +4,7 @@ commit = (form) ->
   path = "_data/#{form.data('path')}.yml"
   url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/#{path}"
   # Get file
+  form.find(":input").prop "disabled", true
   get = $.get url
   get.fail (request, status, error) ->
     if error == 'Not Found'
@@ -12,7 +13,9 @@ commit = (form) ->
       create = $.ajax url, {method: 'PUT', data: JSON.stringify load}
       create.fail (request, status, error) -> notification "#{load.message} #{status} #{error}", 'error'
       create.done (data, status) -> notification "#{load.message} #{status}"
-    else notification "Get #{status} #{error}", 'error'
+    else
+      notification "Get #{status} #{error}", 'error'
+      create.always -> form.find(":input").prop "disabled", false
     return
   # Update file
   get.done (data, status) ->
@@ -21,4 +24,5 @@ commit = (form) ->
     update = $.ajax url, {method: 'PUT', data: JSON.stringify load}
     update.fail (request, status, error) -> notification "#{load.message} #{status} #{error}", 'error'
     update.done (data, status) -> notification "#{load.message} #{status}"
+    update.always -> form.find(":input").prop "disabled", false
   return
