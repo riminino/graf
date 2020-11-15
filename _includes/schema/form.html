@@ -5,8 +5,8 @@
 {%- assign father_stack = "" | split: "" -%}
 <div><form
   live
-  data-path="{{ schema.path | 'default' }}"
-  data-type="{{ schema.type | 'object'}}"
+  data-path="{{ schema.path | default: 'default' }}"
+  data-type="{{ schema.type | default: 'object'}}"
   prevent-default>
 <h3>{{ title | default: "Schema" }}</h3>
 {%- if schema == nil -%}<p>Schema not found</p>{%- endif -%}
