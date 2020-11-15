@@ -1,0 +1,8 @@
+name: Name
+style:
+  name: 'Style[name]'
+  body:
+    name: 'Style[body][name]'
+  surname: 'Style[surname]'
+  second_style: 12@12
+Ciro: 1
