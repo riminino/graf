@@ -50,6 +50,48 @@ $("form").each ->
   # Remove additional property
   form.on "click", "a[data-remove-property]", (e) -> $(e.target).closest("div.property").remove()
 
+  # Add array item
+  form.on "click", "a[data-add]", (e) ->
+    # Get elements
+    parent_div = $(e.target).closest "div"
+    container_div = parent_div.closest "div.array"
+    # Get template
+    template = $ container_div.find("template").clone().prop "content"
+    # Index labels for and input id
+    timestamp = new Date().getTime()
+    template.find("div:not(.array-item)").each () ->
+      $(@).find("label").attr "for", (i, val) -> "#{val}#{timestamp}"
+      $(@).find(":input").attr "id", (i, val) -> "#{val}#{timestamp}"
+      return
+    # Append item
+    container_div.append template
+    return
+
+  # Remove array item
+  form.on "click", "a[data-remove]", (e) -> $(e.target).closest("div.array-item").remove()
+
+  # Add property
+  form.on "click", "a[data-add-property]", (e) ->
+    property_name = prompt "Property name"
+    if property_name
+      # Get elements
+      link = $ e.target
+      form = link.closest "form"
+      parent_div = link.closest "div"
+      # Get template
+      template = $ parent_div.find("template").clone().prop "content"
+      # Index labels for and input id
+      timestamp = new Date().getTime()
+      template.find("div:not(.property)").each () ->
+        $(@).find("label").attr "for", (i, val) -> "#{val}#{timestamp}"
+        $(@).find(":input")
+          .attr "id", (i, val) -> "#{val}#{timestamp}"
+          .attr "name", (i, val) -> "#{val}".replace "[]","[#{property_name}]"
+        return
+      # Append property
+      parent_div.closest("div.additional-property").append template
+    return
+
   # Prevent event for injected links and reset invalid fields
   form.on "click", "a[prevent-default]", (e) ->
     e.preventDefault()
