@@ -1,7 +1,7 @@
 commit = (form) ->
   # Prepare data
   yml = jsyaml.dump form.serializeJSON()
-  path = "_data/#{form.data('path') ? 'default'}.yml"
+  path = "_data/#{form.data('path')}.yml"
   url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/#{path}"
   # Get file
   get = $.get url
