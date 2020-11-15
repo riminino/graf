@@ -1,0 +1,38 @@
+title: A list of tasks
+type: object
+id: _data/test/array.yml
+path: array
+properties:
+  array:
+    type: array
+    items:
+      type: string
+  arrayItems:
+    type: array
+    items:
+      type: object
+      properties:
+        obj1:
+          type: string
+        obj2:
+          type: string
+  tasks:
+    type: array
+    title: Tasks
+    items:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          title: Title
+          description: A sample title
+        details:
+          type: string
+          widget: textarea
+          title: Task details
+          description: Enter the task details
+        done:
+          type: boolean
+          title: Done?

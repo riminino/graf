@@ -21,3 +21,6 @@ $("form[prevent-default]").on "submit", (e) -> e.preventDefault()
 # Initialize serialize
 $.serializeJSON.defaultOptions.parseAll = true
 $.serializeJSON.defaultOptions.skipFalsyValuesForTypes = "text,number,date,password,tel,email".split ","
+
+# YML preview
+# console.log jsyaml.dump {{site.data.test.array | jsonify }}
