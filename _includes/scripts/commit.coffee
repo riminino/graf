@@ -13,9 +13,10 @@ commit = (form) ->
       create = $.ajax url, {method: 'PUT', data: JSON.stringify load}
       create.fail (request, status, error) -> notification "#{load.message} #{status} #{error}", 'error'
       create.done (data, status) -> notification "#{load.message} #{status}"
+      create.always -> form.find(":input").prop "disabled", false
     else
       notification "Get #{status} #{error}", 'error'
-      create.always -> form.find(":input").prop "disabled", false
+      form.find(":input").prop "disabled", false
     return
   # Update file
   get.done (data, status) ->
