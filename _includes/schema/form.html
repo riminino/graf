@@ -3,12 +3,10 @@
 {%- assign title = schema.title | default: schema.file -%}
 {%- assign aP = "" | split: "" | push: schema -%}
 {%- assign father_stack = "" | split: "" -%}
-<div><form
-  live
-  data-path="{{ schema.path | default: 'default' }}"
-  data-type="{{ schema.type | default: 'object'}}"
-  prevent-default>
-<h3>{{ title | default: "Schema" }}</h3>
+<form
+  data-schema="{{ schema | jsonify | uri_escape }}"
+  class="prevent-default">
+<h3 title="{% if schema.path.size > 0 %}path: {{ schema.path }}{% else %}no path{% endif %}">{{ title | default: "Schema" }}</h3>
 {%- if schema == nil -%}<p>Schema not found</p>{%- endif -%}
 {%- if schema.description -%}<p>{{ schema.description }}</p>{%- endif -%}
 {% for property in schema.properties %}
@@ -26,4 +24,4 @@
 <div class="buttons">
   <button type="submit">Submit</button> <button type="reset">Reset</button>
 </div>
-</form></div>
+</form>

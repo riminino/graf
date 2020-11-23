@@ -5,7 +5,7 @@
   <h4>
     {{ attributes.title | default: include.property[0] }}
     {% if template %}
-      <a href="#{{ template }}" title="Remove item" data-remove="{{ label }}" prevent-default>Remove</a>
+      <a href="#{{ template }}" title="Remove item" data-remove="{{ label }}" class="prevent-default">Remove</a>
     {% endif %}
   </h4>
   {%- assign object = true -%}
@@ -46,10 +46,10 @@
   {% if attributes.maxItems and att.maxItems != 0 %}data-index-max="{{ attributes.maxItems }}"{% endif %}
   data-add="{{ label }}"
   title="Add item"
-  prevent-default>Add</a>
+  class="prevent-default">Add</a>
   {% comment %} -------------------- item Remove -------------------- {% endcomment %}
 {% if template and object == nil %}
-  <a href="#{{ label }}" title="Remove item" data-remove="{{ label }}" prevent-default>Remove</a>{% endif %}
+  <a href="#{{ label }}" title="Remove item" data-remove="{{ label }}" class="prevent-default">Remove</a>{% endif %}
 </label>
 {% comment %} Close div {% endcomment %}
 </div>

@@ -3,7 +3,7 @@
 {% capture new_name %}{%- include schema/brackets.html input=include.parent -%}{% endcapture %}
 <div class="additional-property">
   <div>
-    <label markdown="1">Additional property for *{{ new_name | default: "root" }}* <a href="#" prevent-default data-add-property="{{ new_name }}">Add</a></label>
+    <label markdown="1">Additional property for *{{ new_name | default: "root" }}* <a href="#" class="prevent-default" data-add-property="{{ new_name }}">Add</a></label>
     <template>
       <div class="property">
         {%- assign additional = true -%}

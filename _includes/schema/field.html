@@ -21,7 +21,7 @@
   for="{{ name }}"
   {% if "checkbox,radio" contains type and att.enum == nil %} class="boolean"{% endif %}
   {% if att.tooltip %} title="{{ att.tooltip }}"{% endif %}>
-  {{ att.title | default: name }}{% if att.required or schema.required contains label %}<sup>*</sup>{% endif %}
+  {{ att.title | default: name }}{% if att.required or schema.required contains name %}<sup>*</sup>{% endif %}
   {% comment %} -------------------- item Add -------------------- {% endcomment %}
   {% if att.type == "array" %} <a href="#{{ label }}"
   data-index="0"
@@ -29,13 +29,13 @@
   {% if att.maxItems and att.maxItems != 0 %}data-index-max="{{ att.maxItems }}"{% endif %}
   data-add="{{ label }}"
   title="Add item"
-  prevent-default>Add item</a>{% endif %}
+  class="prevent-default">Add item</a>{% endif %}
   {% comment %} -------------------- item Remove -------------------- {% endcomment %}
 {% if template and object == nil %}
-  <a href="#{{ label }}" title="Remove item" data-remove="{{ label }}" prevent-default>Remove</a>{% endif %}
+  <a href="#{{ label }}" title="Remove item" data-remove="{{ label }}" class="prevent-default">Remove</a>{% endif %}
   {% comment %} ----------------- property Remove -------------------- {% endcomment %}
 {% if additional %}
-  <a href="#{{ label }}" title="Remove property" data-remove-property="{{ label }}" prevent-default>Remove</a>{% endif %}
+  <a href="#{{ label }}" title="Remove property" data-remove-property="{{ label }}" class="prevent-default">Remove</a>{% endif %}
 </label>
 {% comment %} -------------------- Enum -------------------- {% endcomment %}
 {% if att.enum %}
@@ -55,7 +55,7 @@
     id="{{ name }}"
     name="{{ name }}"
     aria-label="{{ label }}"
-    {% if att.required %} required{% endif %}
+    {% if att.required or schema.required contains name %} required{% endif %}
     {% if att.disabled %} disabled="true"{% endif %}
     {% if att.readonly or attributes.readOnly %} readonly="true"{% endif %}
     {% if att.multiple %} multiple{% endif %}
@@ -71,6 +71,7 @@
 {% comment %} -------------------- Input -------------------- {% endcomment %}
   {%- assign types = "text,number,date,time,url,email,password,tel,checkbox,radio,color,range" -%}
   {%- if types contains type -%}
+  {%- if type == "range" -%}<output id="{{ name }}_output" for="{{ name }}"></output>{%- endif -%}
   <input
     type="{{ type }}"
     id="{{ name }}"
@@ -88,9 +89,8 @@
     {% if att.placeholder %} placeholder="{{ att.placeholder }}"{% endif %}
     {% if att.autocomplete %} autocomplete="{{ att.autocomplete }}"{% endif %}
     {% if att.autofocus %} autofocus{% endif %}
-    {% if att.required or schema.required contains label %} required{% endif %}
+    {% if att.required or schema.required contains name %} required{% endif %}
     {% if att.multipleOf %} step="{{ att.multipleOf }}"{% endif %}>
-  {%- if type == "range" -%}<output id="{{ name }}_output" for="{{ name }}"></output>{%- endif -%}
 {% comment %} -------------------- Textarea -------------------- {% endcomment %}
   {%- elsif type == "textarea" -%}
   <textarea
@@ -103,7 +103,7 @@
     {% if att.readonly or att.readOnly %} readonly="true"{% endif %}
     {% if att.rows %} rows="{{ att.rows }}"{% endif %}
     {% if att.cols %} cols="{{ att.cols }}"{% endif %}
-    {% if att.required or schema.required contains label %} required{% endif %}>{{ att.default }}</textarea>
+    {% if att.required or schema.required contains name %} required{% endif %}>{{ att.default }}</textarea>
 {% comment %} -------------------- End types -------------------- {% endcomment %}
   {%- else -%}unknow type: {{ type }}
   {%- endif -%}
