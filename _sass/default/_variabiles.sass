@@ -1,104 +1,36 @@
-// Site width
-$main-width:    90% !default
-$mobile-width:  40rem !default
+.theme-dark
+  --foreground:         #{$foreground-dark}
+  // Palette
+  --palette-1:          #{nth($palette-dark, 1)}
+  --palette-2:          #{nth($palette-dark, 2)}
+  --palette-3:          #{nth($palette-dark, 3)}
+  --palette-4:          #{nth($palette-dark, 4)}
+  // Headings
+  --headings-fg:        #{$headings-color-dark}
+  --headings-bg:        #{$headings-background-dark}
+  --headings-border:    #{$headings-border-bottom-dark}
+  // Alerts
+  --success-bg:         #{map-get(map-get($alerts, success), dark)}
+  --success-fg:         #{map-get(map-get($alerts, success), light)}
+  --info-bg:            #{map-get(map-get($alerts, info), dark)}
+  --info-fg:            #{map-get(map-get($alerts, info), light)}
+  --warning-bg:         #{map-get(map-get($alerts, warning), dark)}
+  --warning-fg:         #{map-get(map-get($alerts, warning), light)}
+  --danger-bg:          #{map-get(map-get($alerts, danger), dark)}
+  --danger-fg:          #{map-get(map-get($alerts, danger), light)}
 
-//
-// FONTS
-// --------------------------------------
-$font-size:     15px
-$line-height:   1.3
-$main-font:     sans-serif
-$code-font:     monospace
-$headings-font: serif
-
-//
-// HEADINGS margins
-// --------------------------------------
-$h-margins: 0.67 0.83 1 1.33 1.67 2.33
-
-//
-// FORMS
-// --------------------------------------
-$border-radius: 0
-
-//
-// COLORS
-// --------------------------------------
-
-// Alerts light and dark colors
-$success: (light: #c8f1bd, dark: DarkGreen) !default
-$info:    (light: #b3cfed, dark: MidnightBlue) !default
-$warning: (light: #fffec5, dark: #a47d08) !default
-$danger:  (light: #edb6b6, dark: Maroon) !default
-$alerts:  (success: $success, info: $info, warning: $warning, danger: $danger) !default
-
-// Base
-$hue: 0 !default
-$saturation: 0% !default
-$lightness:  50% !default
-$color:      hsl($hue, $saturation, $lightness) !default
-$color-35:   change-color($color, $lightness: 35%) !default
-$color-65:   change-color($color, $lightness: 65%) !default
-$color-mild: (light: $color-35, dark: $color-65) !default
-
-// Greys
-$grey-05: hsl(0%, 0%, 5%)
-$grey-08: hsl(0%, 0%, 8%)
-$grey-10: hsl(0%, 0%, 10%)
-$grey-15: hsl(0%, 0%, 15%)
-$grey-20: hsl(0%, 0%, 20%)
-$grey-30: hsl(0%, 0%, 30%)
-$grey-40: hsl(0%, 0%, 40%)
-$grey-50: hsl(0%, 0%, 50%)
-$grey-60: hsl(0%, 0%, 60%)
-$grey-70: hsl(0%, 0%, 70%)
-$grey-80: hsl(0%, 0%, 80%)
-$grey-85: hsl(0%, 0%, 85%)
-$grey-90: hsl(0%, 0%, 90%)
-$grey-92: hsl(0%, 0%, 92%)
-$grey-95: hsl(0%, 0%, 95%)
-
-// Shades
-$shades: 4% 9% 14% 16% 25% !default
-// Dark
-$black:       change-color($color, $lightness: nth($shades, 1)) !default
-$darker:      change-color($color, $lightness: nth($shades, 2)) !default
-$dark:        change-color($color, $lightness: nth($shades, 3)) !default
-$darkless:    change-color($color, $lightness: nth($shades, 4)) !default
-$darkquarter: change-color($color, $lightness: nth($shades, 5)) !default
-// Light
-$white:        change-color($color, $lightness: 100% - nth($shades, 1)) !default
-$lighter:      change-color($color, $lightness: 100% - nth($shades, 2)) !default
-$light:        change-color($color, $lightness: 100% - nth($shades, 3)) !default
-$lightless:    change-color($color, $lightness: 100% - nth($shades, 4)) !default
-$lightquarter: change-color($color, $lightness:100% - nth($shades, 5)) !default
-
-// Elements
-$html-bg:   (light: $light, dark: $dark) !default
-$html-fg:   (light: $black, dark: $white) !default
-$main-bg:   (light: $white, dark: $black) !default
-$nav-bg:    (light: $lighter, dark: $darker) !default
-$scrollbar: (light: $light $white, dark: $dark $black) !default
-$link:      hsl(205.8, 100%, 63.9%) !default
-
-// Light theme, no-preference or no supported
-\:root
-  --html-bg:            #{map-get($html-bg, light)}
-  --html-fg:            #{map-get($html-fg, light)}
-  --main-bg:            #{map-get($main-bg, light)}
-  --nav-bg:             #{map-get($nav-bg, light)}
-  --scrollbar:          #{map-get($scrollbar, light)}
-  --link:               #{$link}
-  --mild:               #{map-get($color-mild, light)}
-  --light-grey:         #{$grey-90}
-  --form-bg:            #{$grey-92}
-  --form-fg:            #{map-get($html-fg, light)}
-  --input-border:       #{$grey-60}
-  --input-bg:           #{$grey-90}
-  --input-fg:           #{$grey-20}
-  --input-fg-disabled:  #{$grey-50}
-  --button-fg-disabled: #{$grey-50}
-  --button-fg:          #{$grey-05}
+.theme-light
+  --foreground:         #{$foreground-light}
+  // Palette
+  --palette-1:          #{nth($palette-light, 1)}
+  --palette-2:          #{nth($palette-light, 2)}
+  --palette-3:          #{nth($palette-light, 3)}
+  --palette-4:          #{nth($palette-light, 4)}
+  // Headings
+  --headings-fg:        #{$headings-color-light}
+  --headings-bg:        #{$headings-background-light}
+  --headings-border:    #{$headings-border-bottom-light}
+  // Alerts
   --success-bg:         #{map-get(map-get($alerts, success), light)}
   --success-fg:         #{map-get(map-get($alerts, success), dark)}
   --info-bg:            #{map-get(map-get($alerts, info), light)}
@@ -107,31 +39,3 @@ $link:      hsl(205.8, 100%, 63.9%) !default
   --warning-fg:         #{map-get(map-get($alerts, warning), dark)}
   --danger-bg:          #{map-get(map-get($alerts, danger), light)}
   --danger-fg:          #{map-get(map-get($alerts, danger), dark)}
-
-// Dark theme
-@media (prefers-color-scheme: dark)
-  \:root
-    --html-bg:            #{map-get($html-bg, dark)}
-    --html-fg:            #{map-get($html-fg, dark)}
-    --main-bg:            #{map-get($main-bg, dark)}
-    --nav-bg:             #{map-get($nav-bg, dark)}
-    --scrollbar:          #{map-get($scrollbar, dark)}
-    --link:               #{$link}
-    --mild:               #{map-get($color-mild, dark)}
-    --light-grey:         #{$grey-10}
-    --form-bg:            #{$grey-08}
-    --form-fg:            #{map-get($html-fg, dark)}
-    --input-border:       #{$grey-40}
-    --input-bg:           #{$grey-08}
-    --input-fg:           #{$grey-80}
-    --input-fg-disabled:  #{$grey-50}
-    --button-fg-disabled: #{$grey-50}
-    --button-fg:          #{$grey-05}
-    --success-bg:         #{map-get(map-get($alerts, success), dark)}
-    --success-fg:         #{map-get(map-get($alerts, success), light)}
-    --info-bg:            #{map-get(map-get($alerts, info), dark)}
-    --info-fg:            #{map-get(map-get($alerts, info), light)}
-    --warning-bg:         #{map-get(map-get($alerts, warning), dark)}
-    --warning-fg:         #{map-get(map-get($alerts, warning), light)}
-    --danger-bg:          #{map-get(map-get($alerts, danger), dark)}
-    --danger-fg:          #{map-get(map-get($alerts, danger), light)}

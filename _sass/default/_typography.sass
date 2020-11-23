@@ -21,11 +21,12 @@ article, aside, nav, section
     & > h#{$index}
       margin-top: #{$m*2.5}em
       margin-bottom: #{$m}em
+      padding: .1rem .3rem
 
 b, strong
   font-weight: 600
 
-small, input + span, textarea + span
+small
   font-size: 80%
 
 sub, sup
@@ -38,6 +39,10 @@ sub
 sup
   top: -0.5em
 
+// Abbreviations
+abbr[title]
+  cursor: help
+
 // DATETIME
 [datetime]
   cursor: default
@@ -45,8 +50,22 @@ sup
 //
 // LIST
 // --------------------------------------
-*:not(nav) > ul li
-  padding-bottom: 0.3rem
+ul, ol
+  padding-left: 2em
+
+ul
+  list-style-type: initial
+// li
+//   padding-bottom: 0.3rem
+dl
+  padding-left: .8rem
+  dt
+    font-weight: bold
+    padding-bottom: .5rem
+    &:not(:first-child)
+      padding-top: .5rem
+  dd
+    margin-left: 2rem
 
 //
 // CODE

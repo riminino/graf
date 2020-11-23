@@ -14,25 +14,30 @@
     padding: 1rem
 
   //
-  // Stack navigation links
+  // Stack navigation and footer links
   // --------------------------------------
-  nav ul
-    display: initial !important
-    padding: 0 !important
-    text-align: left !important
-    li
-      display: grid !important
-
-  //
-  // Lists
-  // --------------------------------------
-  ul
-    padding-left: 2em
+  nav
+    display: block
+    padding: 0
+    li span.active
+      background: var(--palette-3)
+    ul, ul li ul
+      display: block
+      position: static
+      padding: 0
+      text-align: left
+      li
+        display: list-item
+        ul
+          padding-left: 2em
+  footer
+    ul, ul:last-child
+      display: block
+      text-align: left
 
   //
   // Stack grid
-  // --------------------------------------
-  
+  // --------------------------------------  
   .grid
     display: block
 

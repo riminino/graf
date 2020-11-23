@@ -1,14 +1,9 @@
 a
-  text-decoration: none
-  &:hover, &:active
-    outline-width: 0
+  text-decoration: underline
   &:active
-    opacity: .5
-  &.disabled
-    // TODO
-    background: red
-  &[disabled]
     text-decoration: none
+    outline-width: 0
+  &[disabled]
     pointer-events: none
     cursor: default
     color: unset

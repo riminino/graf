@@ -1,75 +1,77 @@
-// Scrollbars
 *
-  scrollbar-color: var(--scrollbar)
+  scrollbar-color: var(--palette-1) var(--palette-2)
   scrollbar-width: auto
-
-html, body
-  background-color: var(--html-bg)
-  color: var(--html-fg)
-
-header, footer
-  color: var(--mild)
-
-section
-  background-color: var(--main-bg)
-
-nav
-  background-color: var(--nav-bg)
-  ul li
-    a, span
-      &:hover, &.active
-        background-color: var(--main-bg)
-
-summary
-  color: var(--link)
-  &:hover, &::marker
-    color: var(--html-fg)
-
-// LINKS
+html
+  color: var(--foreground)
+html,
+header,
+footer,
+thead,
+tfoot,
+tbody:nth-child(odd):not(:first-child),
+form,
+blockquote
+  background: var(--palette-1)
+body
+  background: var(--palette-2)
 a
-  color: var(--link)
+  color: var(--palette-3)
   &:hover, &.active
-    color: var(--html-fg)
-
-//
-// TABLES
-// --------------------------------------
-thead, tfoot
-  background-color: var(--light-grey)
+    color: var(--palette-4)
 th, td
-  border-color: var(--light-grey)
-
-//
-// FORMS
-// --------------------------------------
-form
-  background-color: var(--form-bg)
-  color: var(--form-fg)
-  
+  border-color: var(--palette-1)
+nav
+  background: var(--palette-3)
+  ul
+    background: var(--palette-3)
+  li
+    a, span
+      color: var(--palette-2)
+      &:hover, &.active
+        color: var(--palette-2)
+        background: var(--palette-4)
+      &:active
+        background: var(--palette-3)
+summary
+  &:hover
+    color: var(--palette-4)
+// Headings
+@for $index from 1 through 6
+  article, aside, section
+    & > h#{$index}
+      color: var(--headings-fg)
+      background: var(--headings-bg)
+      border-bottom: var(--headings-border)
+// 
 // FIELDS
 // --------------------------------------
 // Borders
 input:not([type=submit]):not([type=reset]):not([type=button]), textarea,
 input[type=color]::-moz-color-swatch, input[type=color]::-webkit-color-swatch
-  border-color: var(--input-border)
+  border-color: var(--palette-2)
 
 // Background and foreground
 input:not([type=submit]):not([type=reset]):not([type=button]), textarea
-  background: var(--input-bg)
-  color: var(--input-fg)
+  background: var(--palette-2)
+  color: var(--foreground)
 
 // Special
-input:disabled, input[readonly], input::placeholder, input + span, textarea + span
-  color: var(--input-fg-disabled)
+// input:disabled, input[readonly], input::placeholder, input + span, textarea + span
+//   color: var(--input-fg-disabled)
 
 // BUTTONS
 // --------------------------------------
 input[type=submit], input[type="reset"], input[type=button], button
-  color: var(--button-fg)
+  // color: black
 
 // Special
-input[type=button][disabled], button[disabled]
-  color: var(--button-fg-disabled)
+// input[type=button][disabled], button[disabled]
+//   color: var(--button-fg-disabled)
+
+// ADDITIONAL PROPERTIES and ARRAY ITEMS
+.additional-property > div:not(.property),
+.array > div:not(.array-item)
+  border-color: var(--foreground)
 
 //
 // ALERTS
@@ -85,11 +87,11 @@ input[type=button][disabled], button[disabled]
     color: var(--#{$alert-name}-fg)
     a:link, a:visited
       color: var(--#{$alert-name}-fg)
+    a:hover
+      text-decoration: none
 
-//
-// SYNTAX
-// --------------------------------------
-
-// Overwrite background, there are many backgrounds to overwrite
-// [class*="highlight"], [class*="highlight"] .w
-//   background-color: var(--light-grey)
+// Typography
+ins
+  color: var(--success-fg)
+del
+  color: var(--danger-fg)

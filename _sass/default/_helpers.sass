@@ -1,0 +1,18 @@
+.loading, .loading *
+  cursor: wait
+
+// Hide: ALONE, THEME, ROLE elements
+.if-alone:not(:only-of-type), .if-theme-dark, .if-theme-light, .if-role-admin, .if-role-guest
+  display: none
+
+// ROLE elements
+.role-admin .if-role-admin, .role-guest .if-role-guest
+  display: inherit
+
+// THEME elements
+.theme-dark .if-theme-dark, .theme-light .if-theme-light
+  display: initial
+
+// No borders
+.no-borders, .no-borders *
+  border: none

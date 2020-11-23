@@ -1,7 +1,7 @@
-// input, select, textarea, button
-//   font-family: inherit
-//   font-size: inherit
-//   line-height: inherit
+input, select, textarea, button
+  font-family: inherit
+  font-size: inherit
+  line-height: inherit
 // 
 // button
 //   cursor: pointer
@@ -10,13 +10,39 @@
 form
   // Width as needed
   display: inline-block
+  border-radius: $border-radius
   padding: 1rem
   margin: 1rem 0
+
+  // Tooltip info on hover
+  h3
+    &[title]
+      display: inline-block
+      cursor: default
+      margin: 0
+    + div
+      margin-top: 1em
 
   // Separate vertical divs
   > *:not(:last-child)
     margin-bottom: 1rem
-  
+  // Top margin for buttons div
+  div.buttons
+    padding-top: .5rem
+  // Additional properties
+  .property, .array-item > div
+    margin-top: 1rem
+
+// Spans for descriptions
+input + span, textarea + span, label.radio + span
+  font-size: 80%
+input[type='checkbox'] + span
+  display: block
+
+// Labels and small notes on forms
+label, input + span, textarea + span
+  margin: .2rem
+
 // Reset appearance
 input:not([type=reset]):not([type=submit]):not([type=button]):not([type=range]):not([type=checkbox]):not([type=radio]), textarea
   appearance: none
@@ -27,7 +53,7 @@ textarea
   resize: none
 
 // Cursor
-button:enabled, select:enabled, input:not([readonly]):enabled, label[for]
+button:enabled, select:enabled, input:not([readonly]):enabled, label
   cursor: pointer
 
 // Disabled
@@ -40,18 +66,24 @@ input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=reset]
 label:not([for])
   display: block
 
-// Labels and small notes on forms
-label, input + span, textarea + span
-  display: inline-block
-  margin: .2rem
-
 // borders and padding
-input:not([type=submit]):not([type=reset]):not([type=button]),
-textarea
-  border-width: 1px
-  border-style: solid
+input:not([type=submit]):not([type=reset]):not([type=button]), textarea
+  border-width: 0
   border-radius: $border-radius
   padding: .2rem .5rem
+
+// Buttons color
+input[type="reset"]:enabled,
+input[type="button"]:enabled,
+input[type="submit"]:enabled,
+button:enabled
+  color: Black
+
+// ADDITIONAL PROPERTIES and ARRAY ITEMS
+.additional-property > div:not(.property),
+.array > div:not(.array-item)
+  border-bottom-width: 1px
+  border-bottom-style: dashed
 
 // Hide number arrows
 input::-webkit-outer-spin-button,

@@ -5,39 +5,23 @@ html
   overflow-y: scroll
 
 body
-  margin: 0
+  margin: 0 auto
+  max-width: $max-width
+
+header, section, footer
+  padding: 2rem calc((100% - #{$main-width}) / 2)
+
+// Remove top and bottom margins of the first and last elements
+header, section, footer, hgroup, form, blockquote
+  & > *:first-child
+    margin-top: 0
+  & > *:last-child
+    margin-bottom: 0
 
 template, [hidden]
   display: none !important
 
-span
-  display: inline
-
-//
-// HELPER CLASS
-// --------------------------------------
-.if-empty:not(:only-of-type)
-  display: none
-
-//
-// prefers-color-scheme
-// --------------------------------------
-@media not all and (prefers-color-scheme)
-  .prefers-color-scheme::after
-    content: "not-supported"
-
-@media (prefers-color-scheme)
-  .prefers-color-scheme::after
-    content: "supported"
-
-@media (prefers-color-scheme: light)
-  .prefers-color-scheme::after
-    content: "light"
-
-@media (prefers-color-scheme: dark)
-  .prefers-color-scheme::after
-    content: "dark"
-
-@media (prefers-color-scheme: no-preference)
-  .prefers-color-scheme::after
-    content: "no-preference"
+blockquote
+  border-radius: $border-radius
+  margin: 1em 0
+  padding: 1em
