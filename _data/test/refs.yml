@@ -1,0 +1,18 @@
+title: References
+type: object
+id: _data/test/refs.json
+definitions:
+  omp:
+    type: object
+    properties:
+      name:
+        type: string
+      age:
+        type: number
+properties:
+  person:
+    $ref: '#/definitions/omp'
+  population:
+    type: array
+    items:
+      $ref: '#/definitions/omp'

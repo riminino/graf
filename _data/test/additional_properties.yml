@@ -1,5 +1,5 @@
-title: A customizable registration form
-description: A simple form with additional properties example.
+title: Additional Properties
+description: A simple form with additional properties example
 type: object
 path: additionalProperties
 additionalProperties:
@@ -8,7 +8,6 @@ properties:
   name:
     type: string
     title: Name
-    autofocus: true
     default: Name
   style:
     type: object
@@ -26,6 +25,7 @@ properties:
             default: 'Style[body][name]'
         additionalProperties:
           type: number
+          description: description
       surname:
         type: string
         title: 'Style[surname]'
