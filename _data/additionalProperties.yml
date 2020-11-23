@@ -3,6 +3,7 @@ style:
   name: 'Style[name]'
   body:
     name: 'Style[body][name]'
+    storia: 14
   surname: 'Style[surname]'
-  second_style: 12@12
-Ciro: 1
+  mai: g@g
+root: 143
