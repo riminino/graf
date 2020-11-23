@@ -1,10 +1,11 @@
 commit = (form) ->
   # Prepare data
+  schema = if form.data 'schema' then JSON.parse decodeURIComponent form.data('schema')
   yml = jsyaml.dump form.serializeJSON()
-  path = "_data/#{form.data('path')}.yml"
+  path = "_data/#{schema.path}.yml"
   url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/#{path}"
   # Get file
-  form.find(":input").prop "disabled", true
+  busy form, true
   get = $.get url
   get.fail (request, status, error) ->
     if error == 'Not Found'
@@ -13,17 +14,17 @@ commit = (form) ->
       create = $.ajax url, {method: 'PUT', data: JSON.stringify load}
       create.fail (request, status, error) -> notification "#{load.message} #{status} #{error}", 'error'
       create.done (data, status) -> notification "#{load.message} #{status}"
-      create.always -> form.find(":input").prop "disabled", false
+      create.always -> busy form, false
     else
       notification "Get #{status} #{error}", 'error'
-      form.find(":input").prop "disabled", false
+      busy form, false
     return
   # Update file
   get.done (data, status) ->
-    content = if form.data('type') is 'array' then atob(data.content) + yml else yml
+    content = if schema.type is 'array' then atob(data.content) + yml else yml
     load = {message: "Update #{path}", sha: data.sha, content: btoa content}
     update = $.ajax url, {method: 'PUT', data: JSON.stringify load}
     update.fail (request, status, error) -> notification "#{load.message} #{status} #{error}", 'error'
     update.done (data, status) -> notification "#{load.message} #{status}"
-    update.always -> form.find(":input").prop "disabled", false
+    update.always -> busy form, false
   return

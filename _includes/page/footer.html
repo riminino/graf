@@ -2,11 +2,11 @@
 {%- assign repo = site.github.public_repositories | where: "full_name", site.github.repository_nwo | first -%}
 <footer>
   <ul>
-    <li><a href="{{ gh.repository_url }}">GitHub</a> updated {% include widgets/datetime.html datetime=repo.updated_at replace=true %}</li>
-    <li><details class="logs"><summary>Logs</summary><div class="if-empty">No activity</div></details></li>
+    <li><a href="{{ gh.repository_url }}">Repository</a> updated {% include widgets/datetime.html datetime=repo.updated_at replace=true %}</li>
+    <li><a href="{{ gh.repository_url | append: '/blob/' | append: repo.default_branch | append: '/' | append: page.path }}">Page</a> code</li>
   </ul>
   <ul>
     <li><a href="#top">Top</a></li>
-    <li><span class="prefers-color-scheme"></span></li>
+    <li>{% include widgets/theme_toggle_link.html %}</li>
   </ul>
 </footer>

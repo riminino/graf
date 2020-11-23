@@ -2,6 +2,7 @@
   Need:
   - Login link with href "#login"
   - storage.coffee script
+  - busy function
 ###
 login =
   link: $ "[href='#login']"
@@ -27,7 +28,7 @@ login.serve = (e) ->
     "Accept": "application/vnd.github.v3+json"
   }
   storage.set "login.token", token
-  login.link.prop "disabled", true
+  busy login.link, true
   auth = $.get "{{ site.github.api_url }}/user"
   auth.done (data, status) ->
     storage.set "login.user", data.login
@@ -61,19 +62,21 @@ login.logout = (e) ->
   true
 
 login.setLink = (status) ->
-  login.link.prop "disabled", false
+  busy login.link, false
   if status is 'logout'
     login.link.text "Logout"
       .off "click"
       .on "click", login.logout
       .attr "title", login.text
+    $('html').addClass "role-#{storage.get 'login.role'}"
   if status is 'login'
     storage.clear 'login'
-    $.ajaxSetup {headers: {}}
+    $.ajaxSetup {}
     login.link.text "Login"
       .off "click"
       .on "click", login.serve
       .attr 'title', "Login link"
+    $('html').removeClass 'role-admin role-guest'
   true
 
 login.init()

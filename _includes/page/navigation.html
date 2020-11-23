@@ -1,24 +1,28 @@
 <nav>
   <ul>
     {% comment %} ----------------- HTML Pages ----------------- {% endcomment %}
-    {%- assign html_pages = site.html_pages | sort: "weight" -%}
-    {% for link in html_pages %}<li><a href="{{ link.url | absolute_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a></li>{% endfor %}
-    {% comment %} ----------------- Collections ----------------- {% endcomment %}
+    {%- assign weighted = site.html_pages | where_exp: "item", "item.weight != nil" -%}
+    {%- assign html_pages = weighted | sort: "weight" -%}
+    {% for link in html_pages %}<li><a href="{{ link.url | absolute_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a></li>
+    {% endfor %}
+    {%- comment -%} ----------------- Collections ----------------- {%- endcomment -%}
     {%- assign sorted_collections = site.collections | sort: "weight" -%}
     {%- for collection in sorted_collections -%}{%- if collection.docs.size > 0 -%}
-    <li class="dropdown">
+    <li>
       <span{% if page.collection == collection.label %} class="active"{% endif %}>
         {{ collection.title | default: collection.label }} &#x25BE;
       </span>
       <ul>
         {%- assign collection_pages = collection.docs | sort: "weight" -%}
-        {% for link in collection_pages %}<li><a href="{{ link.url |absolute_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a>{% endfor %}
+        {% for link in collection_pages %}<li><a href="{{ link.url | absolute_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a></li>
+        {% endfor %}
       </ul>
     </li>
     {% endif %}{%- endfor -%}
   </ul>
-  {% comment %} ----------------- Login button ----------------- {% endcomment %}
+  {% comment %} ----------------- Login and Info links ----------------- {% endcomment %}
   <ul>
+    <li><a href="{{ '/info' | absolute_url }}" class="if-role-admin if-role-guest {% if page.url == '/info' %}active{% endif %}">Info</a></li>
     <li><a href="#login">Login</a></li>
   </ul>
 </nav>

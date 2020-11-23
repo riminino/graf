@@ -22,6 +22,7 @@ storage =
     if !localStorage.getItem(storage.key())? then storage.store {
       "storage":
         "created": new Date()
+        "theme": "light"
         "logs": []
       "repository":
         "url": "{{ site.github.repository_url }}"

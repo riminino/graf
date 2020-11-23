@@ -1,5 +1,6 @@
 $("form").each ->
   form = $ @
+  schema = if form.data 'schema' then JSON.parse decodeURIComponent form.data('schema')
   
   # Update RANGE output
   form.find("input[type=range]").each ->
@@ -11,10 +12,8 @@ $("form").each ->
   # Reset event
   form.on "reset", (e) ->
     # form.find("#timestamp").val ""
-    # # Remove array items and reset index
-    # form.find(".array-item").remove()
-    # Remove additional properties
-    form.find("div.property").remove()
+    # Remove additional properties and array elements
+    form.find(".property, .array-item").remove()
     setTimeout -> form.find("input[type=range]").trigger "input"
     return
 
@@ -44,17 +43,17 @@ $("form").each ->
           .attr "name", "#{id}"
         return
       # Append property
-      parent_div.closest("div.additional-property").append template
+      parent_div.closest(".additional-property").append template
     return
 
   # Remove additional property
-  form.on "click", "a[data-remove-property]", (e) -> $(e.target).closest("div.property").remove()
+  form.on "click", "a[data-remove-property]", (e) -> $(e.target).closest(".property").remove()
 
   # Add array item
   form.on "click", "a[data-add]", (e) ->
     # Get elements
     parent_div = $(e.target).closest "div"
-    container_div = parent_div.closest "div.array"
+    container_div = parent_div.closest ".array"
     # Get template
     template = $ container_div.find("template").clone().prop "content"
     # Index labels for and input id
@@ -68,55 +67,29 @@ $("form").each ->
     return
 
   # Remove array item
-  form.on "click", "a[data-remove]", (e) -> $(e.target).closest("div.array-item").remove()
+  form.on "click", "a[data-remove]", (e) -> $(e.target).closest(".array-item").remove()
 
-  # Add property
-  form.on "click", "a[data-add-property]", (e) ->
-    property_name = prompt "Property name"
-    if property_name
-      # Get elements
-      link = $ e.target
-      form = link.closest "form"
-      parent_div = link.closest "div"
-      # Get template
-      template = $ parent_div.find("template").clone().prop "content"
-      # Index labels for and input id
-      timestamp = new Date().getTime()
-      template.find("div:not(.property)").each () ->
-        $(@).find("label").attr "for", (i, val) -> "#{val}#{timestamp}"
-        $(@).find(":input")
-          .attr "id", (i, val) -> "#{val}#{timestamp}"
-          .attr "name", (i, val) -> "#{val}".replace "[]","[#{property_name}]"
-        return
-      # Append property
-      parent_div.closest("div.additional-property").append template
-    return
-
-  # Prevent event for injected links and reset invalid fields
-  form.on "click", "a[prevent-default]", (e) ->
-    e.preventDefault()
-    form.find(".invalid").removeClass "invalid"
+  # Prevent event for injected links
+  form.on "click", "a.prevent-default", (e) -> e.preventDefault()
 
   # Submit event
   form.on "submit", (e) ->
     # Check if is live
-    if form.attr('live')?
+    if schema.path
       # Check if logged
       if !storage.get 'login.user'
         notification 'Need to login', 'error'
       # Logged, check if admin
       else if storage.get('login.role') isnt 'admin'
         notification 'Login as admin', 'error'
-      # Logged as admin, check if personal
-      else if form.data('personal')?
-        # Personal, check if fork
-        if storage.get('repository.fork')
-          # Personal and fork, commit and pull request
-          pull_request form
-        else notification 'Need a fork to pull request', 'error'
-      # Not personal, commit
+      # Admin, check if fork
+      else if storage.get('repository.fork')
+        # Admin and fork, commit and pull request
+        pull_request form
+      # Admin, no fork, commit
       else commit form
-    else console.log jsyaml.dump form.serializeJSON()
+    # No path, log yaml
+    else console.log schema.path
     return
 
   return
