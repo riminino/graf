@@ -1,0 +1,9 @@
+//
+// SYNTAX HIGHLIGHT
+// --------------------------------------
+// light or no-preference
+.theme-light
+  @import {{ site.css.syntax.dark | default: 'rouge/github' | prepend: 'syntax/' }}
+// dark
+.theme-dark
+  @import {{ site.css.syntax.dark | default: 'rouge/gruvbox' | prepend: 'syntax/' }}

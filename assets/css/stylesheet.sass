@@ -1,16 +1,6 @@
 ---
 ---
 
-//
-// SYNTAX
-// --------------------------------------
-
-// light or no-preference
-@media (prefers-color-scheme: no-preference), (prefers-color-scheme: light)
-  @import {{ site.css.syntax.dark | default: 'rouge/github' | prepend: 'syntax/' }}
-
-// dark
-@media (prefers-color-scheme: dark)
-  @import {{ site.css.syntax.dark | default: 'rouge/gruvbox' | prepend: 'syntax/' }}
-
-@import default
+{% include_relative syntax.sass %}
+{% include_relative variabiles.sass %}
+@import {{ site.css.theme | default: "default" }}
