@@ -1,6 +1,3 @@
-name: Name
-style:
-  name: 'Style[name]'
-  body:
-    name: 'Style[body][name]'
-  surname: 'Style[surname]'
+name: dd
+color_1: '#e0d22a'
+color_2: '#d71313'
