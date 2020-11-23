@@ -1,6 +1,5 @@
 ---
-permalink: metadata
-weight: 1
+weight: 3
 ---
 # Metadata
 
@@ -15,7 +14,7 @@ weight: 1
 |:--|:--|
 |build_revision|{{gh.build_revision}}
 |repository_nwo|{{gh.repository_nwo}}
-|versions.jekyll|{{gh.versions.jekyll}} `<meta name="generator" content="Jekyll v3.9.0">`{:.language-html}
+|versions.jekyll|{{gh.versions.jekyll}}
 |is_user_page|{{gh.is_user_page|inspect}}
 |environment|{{gh.environment}}
 |is_project_page|{{gh.is_project_page|inspect}}
