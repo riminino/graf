@@ -5,9 +5,9 @@ weight: 0
 # Schema
 {:.no_toc}
 
-- `autofocus: true`{:.language-yml} will autofocus the input field (will change initial scroll position)
+`autofocus: true`{:.language-yml} will autofocus the input field (will change initial scroll position)
 
-1. toc
+- toc
 {:toc}
 
 ## Simple

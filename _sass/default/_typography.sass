@@ -5,6 +5,7 @@ html
 
 h1, h2, h3, h4, h5, h6
   font-family: $headings-font
+  font-weight: $headings-weight
 
 //
 // HEADINGS
@@ -15,13 +16,18 @@ article, aside, nav, section
   h1
     font-size: 2em
 
-@for $index from 1 through length($h-margins)
-  $m: nth($h-margins, $index)
+@for $index from 1 through length($headings-margins)
+  $margin: nth($headings-margins, $index)
   article, aside, section
     & > h#{$index}
-      margin-top: #{$m*2.5}em
-      margin-bottom: #{$m}em
-      padding: .1rem .3rem
+      margin-top: #{$margin*2.5}em
+      margin-bottom: #{$margin}em
+      padding: .1rem .5rem
+
+// Nav
+nav
+  text-transform: $nav-font-transform
+  font-weight: $nav-font-weight
 
 b, strong
   font-weight: 600
@@ -46,26 +52,6 @@ abbr[title]
 // DATETIME
 [datetime]
   cursor: default
-
-//
-// LIST
-// --------------------------------------
-ul, ol
-  padding-left: 2em
-
-ul
-  list-style-type: initial
-// li
-//   padding-bottom: 0.3rem
-dl
-  padding-left: .8rem
-  dt
-    font-weight: bold
-    padding-bottom: .5rem
-    &:not(:first-child)
-      padding-top: .5rem
-  dd
-    margin-left: 2rem
 
 //
 // CODE

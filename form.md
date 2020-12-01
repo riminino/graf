@@ -23,29 +23,24 @@ schema:
 
 Where to save the instance file: the path inside `_data` and filename without extension.
 
-|Schema property|Form attribute
-|:--|:--
-|`path`|`data-path`
-
 - If the property is not present in the schema, will console log the form in yaml
-- If the user is not logged or `login.role != admin`, will alert
+- If the user is not logged or `login.role != admin`, will alert at form submit
 
 |Condition|Effect
 |:--|:--
 |repository is a fork|will commit in `_data/<data-path>.yml`
-|repository is not a fork|will pull request in `_data/users/<user>/<data-path>.yml`
+|repository is not a fork|will commit in `_data/users/<user>/<data-path>.yml` and pull request
 
 ## Type
 
+<div class="grid">
+  <div markdown="1">
 The type of schema.
-
-|Schema property|Form attribute
-|:--|:--
-|`type`|`data-type`
-
-|Value|Effect
-|:--|:--
-|`object`|will replace the content
-|`array`|will append at the bottom
-
+- `object` will replace the content
+- `array` will append at the bottom
+</div>
+  <div>
 {% include schema/form.html schema=page.schema %}
+  </div>
+</div>
+

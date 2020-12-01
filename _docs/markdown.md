@@ -1,19 +1,25 @@
 ---
-weight: 2
+weight: 3
+sidebar: [toc]
 ---
 
 # Markdown
 {:.no_toc}
 
+* toc
+{:toc}
+
 This is a paragraph with a [link](#) and a disabled [one](#){:disabled=""}.
 
 ## Table of contents
-{:.no_toc}
 
-Is an ordered `1. toc` or unordered `- toc` list, called with `{:toc}`.  
-The class `{:.no_toc}` exclude a heading from the list.
+The first line select an ordered `1. toc` or unordered `- toc` list, the second line `{:toc}` replace the first one with the headings list.
+
 * toc
 {:toc}
+
+- The class `{:.no_toc}` exclude a heading from the list
+- If the page has the `toc` widget in the `sidebar` array, the table of contents is moved on the sidebar
 
 ## Details
 
@@ -78,17 +84,25 @@ Top margin
   <span>Label.radio</span>
 </div>
 
-<textarea name="textarea" id="textarea" rows="5" placeholder="Text"></textarea>
-
 <!-- Checkbox -->
 <div>
-  <label>Checkboxes</label>
-  <label for="terms">
+  <label>Checkbox label > input + text</label>
+  <label for="terms" class="boolean">
     <input type="checkbox" id="terms" name="terms"> I agree to the
   </label>
-  <label for="bio">
-    <input type="checkbox" id="bio" name="bio"> Terms and Conditions
-  </label>
+  <span>Desc</span>
+</div>
+<div>
+  <label for="bio" class="boolean">Checkbox label + input</label>
+  <input type="checkbox" id="bio" name="bio">
+  <span>Desc</span>
+</div>
+
+<!-- Textarea -->
+<div>
+  <label for="textarea">Textarea</label>
+  <textarea name="textarea" id="textarea" rows="5" placeholder="Text"></textarea>
+  <span>Desc</span>
 </div>
 
 <!-- Button -->

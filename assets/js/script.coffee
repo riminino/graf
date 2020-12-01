@@ -10,7 +10,8 @@
 {% include scripts/commit.coffee %}
 {% include scripts/pull_request.coffee %}
 {% include scripts/notifications.coffee %}
-{% include scripts/theme.coffee %}
+{% include scripts/mode_toggle.coffee %}
+{% include scripts/toc.coffee %}
 
 # Get storage
 # --------------------------------------
@@ -26,3 +27,21 @@ $.serializeJSON.defaultOptions.skipFalsyValuesForTypes = "text,number,date,passw
 
 # YML preview
 # console.log jsyaml.dump {{site.data.test.widgets | jsonify }}
+
+# Storage
+# ls =
+#   set: (key, value) ->
+#     localStorage.setItem("{{ site.github.repository_nwo }}/#{key}", value)
+#     ls
+#   get: (key) ->
+#     if key
+#       return localStorage.getItem "{{ site.github.repository_nwo }}/#{key}"
+#     else
+#       for own key of localStorage
+#         console.log key, localStorage.getItem key
+#       return
+#   clear: (key) ->
+#     if key then localStorage.removeItem key else localStorage.clear()
+#     ls
+# 
+# ls.get()

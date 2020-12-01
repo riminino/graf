@@ -6,8 +6,7 @@ css:
 # Info
 
 {% assign gh = site.github %}
-{%- assign repo = gh.public_repositories | where: "full_name", gh.repository_nwo | first -%}
-
+{% assign repo = gh.public_repositories | where: "full_name", gh.repository_nwo | first %}
 <table>
   <thead>
     <tr>

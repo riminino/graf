@@ -1,0 +1,79 @@
+\:root, .mode-light
+  --fg:                 #{$foreground-light}
+  --alt-bg:             #{nth($palette-light, 1)}
+  --bg:                 #{nth($palette-light, 2)}
+  // Navigation
+  --nav-bg:             #{map-get($nav-light, bg)}
+  --nav-fg:             #{map-get($nav-light, fg)}
+  --nav-hover-bg:       #{map-get($nav-light, hover-bg)}
+  --nav-hover-fg:       #{map-get($nav-light, hover-fg)}
+  --nav-active-bg:      #{map-get($nav-light, active-bg)}
+  --nav-active-fg:      #{map-get($nav-light, active-fg)}
+  // Forms
+  --input-bg:           #{$input-bg-light}
+  // Links
+  --link-color:         #{$link-color-light}
+  --link-color-hover:   #{$link-color-hover-light}
+  --link-color-active:  #{$link-color-active-light}
+  // Headings
+  --headings-fg:        #{$headings-fg-light}
+  --headings-bg:        #{$headings-bg-light}
+  --headings-border:    #{$headings-border-bottom-light}
+  // Tables
+  --table-alt-bg:       #{map-get(map-get($table-alt, light), bg)}
+  --table-alt-fg:       #{map-get(map-get($table-alt, light), fg)}
+  // Borders
+  --border-color:       #{$border-color-light}
+  --table-border-color: #{$table-border-color-light}
+  // Alerts
+  --success-bg:         #{map-get(map-get($alerts, success), light)}
+  --success-fg:         #{map-get(map-get($alerts, success), dark)}
+  --info-bg:            #{map-get(map-get($alerts, info), light)}
+  --info-fg:            #{map-get(map-get($alerts, info), dark)}
+  --warning-bg:         #{map-get(map-get($alerts, warning), light)}
+  --warning-fg:         #{map-get(map-get($alerts, warning), dark)}
+  --danger-bg:          #{map-get(map-get($alerts, danger), light)}
+  --danger-fg:          #{map-get(map-get($alerts, danger), dark)}
+  // Scrollbar
+  --scrollbar-track:    #{$scrollbar-track-light}
+  --scrollbar-thumb:    #{$scrollbar-thumb-light}
+
+.mode-dark
+  --fg:                 #{$foreground-dark}
+  --alt-bg:             #{nth($palette-dark, 1)}
+  --bg:                 #{nth($palette-dark, 2)}
+  // Navigation
+  --nav-bg:             #{map-get($nav-dark, bg)}
+  --nav-fg:             #{map-get($nav-dark, fg)}
+  --nav-hover-bg:       #{map-get($nav-dark, hover-bg)}
+  --nav-hover-fg:       #{map-get($nav-dark, hover-fg)}
+  --nav-active-bg:      #{map-get($nav-dark, active-bg)}
+  --nav-active-fg:      #{map-get($nav-dark, active-fg)}
+  // Forms
+  --input-bg:           #{$input-bg-dark}
+  // Links
+  --link-color:         #{$link-color-dark}
+  --link-color-hover:   #{$link-color-hover-dark}
+  --link-color-active:  #{$link-color-active-dark}
+  // Headings
+  --headings-fg:        #{$headings-fg-dark}
+  --headings-bg:        #{$headings-bg-dark}
+  --headings-border:    #{$headings-border-bottom-dark}
+  // Tables
+  --table-alt-bg:       #{map-get(map-get($table-alt, dark), bg)}
+  --table-alt-fg:       #{map-get(map-get($table-alt, dark), fg)}
+  // Borders
+  --border-color:       #{$border-color-dark}
+  --table-border-color: #{$table-border-color-dark}
+  // Alerts
+  --success-bg:         #{map-get(map-get($alerts, success), dark)}
+  --success-fg:         #{map-get(map-get($alerts, success), light)}
+  --info-bg:            #{map-get(map-get($alerts, info), dark)}
+  --info-fg:            #{map-get(map-get($alerts, info), light)}
+  --warning-bg:         #{map-get(map-get($alerts, warning), dark)}
+  --warning-fg:         #{map-get(map-get($alerts, warning), light)}
+  --danger-bg:          #{map-get(map-get($alerts, danger), dark)}
+  --danger-fg:          #{map-get(map-get($alerts, danger), light)}
+  // Scrollbar
+  --scrollbar-track:    #{$scrollbar-track-dark}
+  --scrollbar-thumb:    #{$scrollbar-thumb-dark}

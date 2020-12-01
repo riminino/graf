@@ -1,18 +1,34 @@
+// HIDDEN elements
+template, [hidden]
+  display: none !important
+
+// Loading cursor
 .loading, .loading *
   cursor: wait
 
-// Hide: ALONE, THEME, ROLE elements
-.if-alone:not(:only-of-type), .if-theme-dark, .if-theme-light, .if-role-admin, .if-role-guest
+//
+// VISIBILITY
+// --------------------------------------
+.if-alone:not(:only-of-type),
+.mode-light .if-mode-dark,
+.mode-dark .if-mode-light,
+.role-admin .if-role-guest,
+.role-guest .if-role-admin,
+.not-logged .if-logged
   display: none
 
-// ROLE elements
-.role-admin .if-role-admin, .role-guest .if-role-guest
-  display: inherit
-
-// THEME elements
-.theme-dark .if-theme-dark, .theme-light .if-theme-light
-  display: initial
+@media (min-width: $mobile-width)
+  .if-small-screen
+    display: none
 
 // No borders
 .no-borders, .no-borders *
   border: none
+
+// Opposite mode
+.mode-light
+  .mode-opposite
+    @extend .mode-dark
+.mode-dark
+  .mode-opposite
+    @extend .mode-light

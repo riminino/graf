@@ -7,8 +7,8 @@ return_log = (log) ->
   dateTime span
   row = $('<tr/>').append([
     $('<td/>').append(span),
-    $('<td/>').append(
-      $('<code/>', {text: log.text, class: log.cls ? 'success'})
+    $('<td/>', {class: log.cls ? 'success'}).append(
+      $('<span/>', {text: log.text})
     )
   ])
   return row

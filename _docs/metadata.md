@@ -1,7 +1,11 @@
 ---
-weight: 3
+weight: 4
 ---
 # Metadata
+{:.no_toc}
+
+* toc
+{:toc}
 
 ## GitHub
 {% assign gh = site.github %}

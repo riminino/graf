@@ -1,40 +1,51 @@
-*
-  scrollbar-color: var(--palette-1) var(--palette-2)
-  scrollbar-width: auto
-html
-  color: var(--foreground)
-html,
-header,
-footer,
-thead,
-tfoot,
+html, header, footer, form, blockquote
+  background: var(--alt-bg)
+  color: var(--fg)
+thead, tfoot,
 tbody:nth-child(odd):not(:first-child),
-form,
-blockquote
-  background: var(--palette-1)
-body
-  background: var(--palette-2)
+  background: var(--table-alt-bg)
+  color: var(--table-alt-fg)
+  code
+    color: initial
+body,
+table
+  background: var(--bg)
+  color: var(--fg)
 a
-  color: var(--palette-3)
+  color: var(--link-color)
   &:hover, &.active
-    color: var(--palette-4)
-th, td
-  border-color: var(--palette-1)
+    color: var(--link-color-hover)
+  &:active
+    color: var(--link-color-active)
 nav
-  background: var(--palette-3)
+  background: var(--nav-bg)
   ul
-    background: var(--palette-3)
+    background: var(--nav-bg)
   li
-    a, span
-      color: var(--palette-2)
-      &:hover, &.active
-        color: var(--palette-2)
-        background: var(--palette-4)
+    a:hover
+      color: var(--nav-hover-fg)
+      background: var(--nav-hover-bg)
+    a, span, summary
+      color: var(--nav-fg)
+      &.active
+        color: var(--nav-hover-fg)
+        background: var(--nav-hover-bg)
       &:active
-        background: var(--palette-3)
+        background: var(--nav-active-bg)
+        color: var(--nav-active-fg)
 summary
   &:hover
-    color: var(--palette-4)
+    color: var(--link-color-hover)
+
+// borders
+form, footer, blockquote, textarea,
+input:not([type=submit]):not([type=reset]):not([type=button]),
+input[type=color]::-moz-color-swatch,
+input[type=color]::-webkit-color-swatch
+  border-color: var(--border-color)
+th, td
+  border-color: var(--table-border-color)
+
 // Headings
 @for $index from 1 through 6
   article, aside, section
@@ -42,18 +53,15 @@ summary
       color: var(--headings-fg)
       background: var(--headings-bg)
       border-bottom: var(--headings-border)
+
 // 
 // FIELDS
 // --------------------------------------
-// Borders
-input:not([type=submit]):not([type=reset]):not([type=button]), textarea,
-input[type=color]::-moz-color-swatch, input[type=color]::-webkit-color-swatch
-  border-color: var(--palette-2)
 
 // Background and foreground
 input:not([type=submit]):not([type=reset]):not([type=button]), textarea
-  background: var(--palette-2)
-  color: var(--foreground)
+  background: var(--input-bg)
+  color: var(--fg)
 
 // Special
 // input:disabled, input[readonly], input::placeholder, input + span, textarea + span
@@ -71,7 +79,7 @@ input[type=submit], input[type="reset"], input[type=button], button
 // ADDITIONAL PROPERTIES and ARRAY ITEMS
 .additional-property > div:not(.property),
 .array > div:not(.array-item)
-  border-color: var(--foreground)
+  border-color: var(--fg)
 
 //
 // ALERTS
@@ -82,16 +90,32 @@ input[type=submit], input[type="reset"], input[type=button], button
     color: inherit
 
 @each $alert-name, $alert in $alerts
-  .#{$alert-name}
+  .#{$alert-name}, .#{$alert-name} *
     background: var(--#{$alert-name}-bg)
     color: var(--#{$alert-name}-fg)
-    a:link, a:visited
+    border-width: $alerts-border-width
+    border-color: var(--#{$alert-name}-fg)
+    a, a:visited
       color: var(--#{$alert-name}-fg)
+      text-decoration: underline
     a:hover
       text-decoration: none
+    a:active
+      color: var(--#{$alert-name}-bg)
 
 // Typography
 ins
   color: var(--success-fg)
 del
   color: var(--danger-fg)
+
+// Scrollbars
+*
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track)
+  scrollbar-width: auto
+  &::-webkit-scrollbar-track
+    background: var(--scrollbar-track)
+  &::-webkit-scrollbar-thumb
+    background: var(--scrollbar-thumb)
+  &::-webkit-scrollbar
+    width: auto

@@ -1,0 +1,48 @@
+{%- assign weighted = site.html_pages | where_exp: "item", "item.weight != nil" -%}
+{%- assign html_pages = weighted | sort: "weight" -%}
+{%- assign sorted_collections = site.collections | sort: "weight" -%}
+<nav>
+  <details class="if-small-screen">
+    <summary>NAVIGATION</summary>
+    <ul>
+      {% comment %} ----------------- HTML Pages ----------------- {% endcomment %}
+      {% include page/nav_items.html items=html_pages %}
+      {%- comment -%} ----------------- Collections ----------------- {%- endcomment -%}
+      {%- for collection in sorted_collections -%}{%- if collection.docs.size > 0 -%}
+      <li>
+        <details>
+          <summary{% if page.collection == collection.label %} class="active"{% endif %}>{{ collection.title | default: collection.label }}</summary>
+        <ul>
+          {%- assign collection_pages = collection.docs | sort: "weight" -%}
+          {% include page/nav_items.html items=collection_pages %}
+        </ul>
+        </details>
+      </li>
+      {% endif %}{%- endfor -%}
+    </ul>
+    {% comment %} ----------------- Login and Info links ----------------- {% endcomment %}
+    <ul>
+      {% include page/nav_meta.html %}
+    </ul>
+  </details>
+  <ul class="if-big-screen">
+    {% comment %} ----------------- HTML Pages ----------------- {% endcomment %}
+    {% include page/nav_items.html items=html_pages %}
+    {%- comment -%} ----------------- Collections ----------------- {%- endcomment -%}
+    {%- for collection in sorted_collections -%}{%- if collection.docs.size > 0 -%}
+    <li>
+      <span{% if page.collection == collection.label %} class="active"{% endif %}>
+        {{ collection.title | default: collection.label }} &#x25BE;
+      </span>
+      <ul>
+        {%- assign collection_pages = collection.docs | sort: "weight" -%}
+        {% include page/nav_items.html items=collection_pages %}
+      </ul>
+    </li>
+    {% endif %}{%- endfor -%}
+  </ul>
+  {% comment %} ----------------- Login and Info links ----------------- {% endcomment %}
+  <ul class="if-big-screen">
+    {% include page/nav_meta.html %}
+  </ul>
+</nav>

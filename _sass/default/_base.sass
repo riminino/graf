@@ -3,25 +3,126 @@
 
 html
   overflow-y: scroll
+  scroll-behavior: smooth
 
 body
   margin: 0 auto
   max-width: $max-width
+  display: flex
+  flex-direction: column
 
-header, section, footer
-  padding: 2rem calc((100% - #{$main-width}) / 2)
+header, footer, section, nav, aside#sidebar
+  padding-left: calc((100% - #{$content-width}) / 2)
+  padding-right: calc((100% - #{$content-width}) / 2)
+
+main
+  display: flex
+  flex-direction: $main-flex-direction
+  align-items: flex-start
+  @if $main-flex-direction == row-reverse
+    aside#sidebar
+      padding-left: calc((100% - 90%) / 4)
+    section
+      padding-right: calc((100% - 90%) / 4)
+  @if $main-flex-direction == row
+    aside#sidebar
+      padding-right: calc((100% - 90%) / 4)
+    section
+      padding-left: calc((100% - 90%) / 4)
+
+aside#sidebar
+  flex: $sidebar-width
+  padding-top: 3em
+  padding-bottom: 3em
+  @if $sidebar-position == sticky
+    position: sticky
+    top: 3em
+
+// Add 2.6em padding-top to next element (header or section)
+@if $nav-position == sticky
+  nav
+    position: $nav-position
+    top: 0
+  \:target
+    scroll-margin-top: 3em
+    scroll-snap-margin-top: 3em
+
+header, footer
+  padding-top: 2em
+  padding-bottom: 2em
+header
+  display: $header-display
+
+section
+  padding-top: 3em
+  padding-bottom: 3em
+  flex: 1
 
 // Remove top and bottom margins of the first and last elements
-header, section, footer, hgroup, form, blockquote
+header, section, footer, hgroup, form, blockquote, #sidebar
   & > *:first-child
     margin-top: 0
   & > *:last-child
     margin-bottom: 0
 
-template, [hidden]
-  display: none !important
-
 blockquote
-  border-radius: $border-radius
   margin: 1em 0
   padding: 1em
+
+//
+// LISTS
+// --------------------------------------
+ul, ol
+  padding-left: 2em
+  li
+    margin: 0.2em 0
+ul
+  list-style-type: initial
+dl
+  padding-left: .8rem
+  dt
+    font-weight: bold
+    padding-bottom: .5rem
+    &:not(:first-child)
+      padding-top: .5rem
+  dd
+    margin-left: 2rem
+
+//
+// BORDERS
+// --------------------------------------
+blockquote
+  border-radius: $blockquote-border-radius
+  border-style: solid
+// Plain blockquote borders
+blockquote:not([class='success']):not([class='info']):not([class='warning']):not([class='danger']),
+blockquote[class='mode-opposite']
+  border-width: $blockquote-border-width
+form
+  border-radius: $form-border-radius
+  border-width: $form-border-width
+  border-style: solid
+input:not([type=submit]):not([type=reset]):not([type=button]), textarea
+  border-radius: $input-border-radius
+  border-width: $input-border-width
+  border-style: solid
+// color swatch border hack
+input[type="color"]
+  &::-moz-color-swatch
+    border: none
+  &::-webkit-color-swatch
+    border: none
+footer
+  border-top-width: $footer-border-top-width
+  border-top-style: solid
+nav
+  border-width: 0
+  border-bottom-width: $nav-border-bottom-width
+  border-bottom-style: solid
+  ul li ul
+    border-bottom-width: $nav-border-bottom-width
+    border-right-width: $nav-border-bottom-width
+    border-left-width: $nav-border-bottom-width
+    border-bottom-style: solid
+    border-right-style: solid
+    border-left-style: solid

@@ -1,10 +1,8 @@
 nav
+  z-index: $z-index-nav
   display: flex
   justify-content: space-between
-  padding-left: calc((100% - #{$main-width}) / 2)
-  padding-right: calc((100% - #{$main-width}) / 2)
-  text-transform: uppercase
-  font-weight: bold
+  order: $nav-order
   ul
     margin: 0
     padding-left: 0
@@ -13,22 +11,19 @@ nav
     li
       position: relative
       padding: 0
-      a,
-      span
+      margin: 0
+      a, span
         text-decoration: none
         padding: 0.6rem
         display: block
         width: 100%
+        &:hover, &:active
+          text-decoration: none
       span
         cursor: default
       &:hover > ul
-        display: initial
+        display: block
       // Dropdown
       ul
-        padding-left: 0
         position: absolute
         display: none
-        li
-          display: flex
-          align-items: center
-          justify-content: flex-start

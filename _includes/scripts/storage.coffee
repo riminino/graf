@@ -22,7 +22,7 @@ storage =
     if !localStorage.getItem(storage.key())? then storage.store {
       "storage":
         "created": new Date()
-        "theme": "light"
+        "mode": "light"
         "logs": []
       "repository":
         "url": "{{ site.github.repository_url }}"
@@ -43,7 +43,7 @@ storage =
     obj = storage.get()
     storage.prop key, value, obj
     storage.store obj
-    return storage # for multiple storage
+    return storage # for storage chains
   prop: (key, value, obj) ->
     key_array = key.split "."
     final = key_array.pop()

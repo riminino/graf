@@ -1,18 +1,22 @@
 timezone: Europe/Rome
 baseurl: "/graf"
 permalink: pretty
+repository: riminino/graf
 
 # COLLECTIONS
 collections:
   docs:
     output: true
     title: Docs
+
+# DEFAULTS
 defaults:
   - scope:
       type: docs
     values:
       layout: default
       weight: 1
+      sidebar: [toc]
 
 # kramdown syntax is normally not processed inside an HTML tag
 # https://kramdown.gettalong.org/quickref.html#html-elements
@@ -20,40 +24,8 @@ defaults:
 # kramdown:
 #   parse_block_html: true
 
-# css:
-#   theme: default
-#   width:
-#     main: 80%
-#     max: 80em
-#     mobile: 30em
-#   fonts:
-#     size: 18px
-#     line-height: 1.6
-#     main: Ubuntu
-#     headings: mono
-#     code: serif
-#   headings:
-#     color:
-#       dark: darkred
-#       light: salmon
-#     background:
-#       dark: brown
-#       light: lightyellow
-#     border-bottom:
-#       dark: 1px dashed darkred
-#       light: 1px dashed salmon
-#   dark: darkred
-#   light: salmon
-#   accent: red
-#   palette:
-#     dark:
-#       - "#543864"
-#       - "#202040"
-#       - "#ff6363"
-#       - "#ffbd69"
-#     light:
-#       - "#ebcfc4"
-#       - "#fff3e2"
-#       - "#5a4aa2"
-#       - "#9088d4"
-#   border-radius: 3px
+css:
+  theme: contrast
+  # syntax:
+  #   dark: rouge/molokai
+  #   light: rouge/magritte

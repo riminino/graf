@@ -1,41 +1,168 @@
-.theme-dark
-  --foreground:         #{$foreground-dark}
-  // Palette
-  --palette-1:          #{nth($palette-dark, 1)}
-  --palette-2:          #{nth($palette-dark, 2)}
-  --palette-3:          #{nth($palette-dark, 3)}
-  --palette-4:          #{nth($palette-dark, 4)}
-  // Headings
-  --headings-fg:        #{$headings-color-dark}
-  --headings-bg:        #{$headings-background-dark}
-  --headings-border:    #{$headings-border-bottom-dark}
-  // Alerts
-  --success-bg:         #{map-get(map-get($alerts, success), dark)}
-  --success-fg:         #{map-get(map-get($alerts, success), light)}
-  --info-bg:            #{map-get(map-get($alerts, info), dark)}
-  --info-fg:            #{map-get(map-get($alerts, info), light)}
-  --warning-bg:         #{map-get(map-get($alerts, warning), dark)}
-  --warning-fg:         #{map-get(map-get($alerts, warning), light)}
-  --danger-bg:          #{map-get(map-get($alerts, danger), dark)}
-  --danger-fg:          #{map-get(map-get($alerts, danger), light)}
+// DEFAULT VALUES
 
-.theme-light
-  --foreground:         #{$foreground-light}
-  // Palette
-  --palette-1:          #{nth($palette-light, 1)}
-  --palette-2:          #{nth($palette-light, 2)}
-  --palette-3:          #{nth($palette-light, 3)}
-  --palette-4:          #{nth($palette-light, 4)}
-  // Headings
-  --headings-fg:        #{$headings-color-light}
-  --headings-bg:        #{$headings-background-light}
-  --headings-border:    #{$headings-border-bottom-light}
-  // Alerts
-  --success-bg:         #{map-get(map-get($alerts, success), light)}
-  --success-fg:         #{map-get(map-get($alerts, success), dark)}
-  --info-bg:            #{map-get(map-get($alerts, info), light)}
-  --info-fg:            #{map-get(map-get($alerts, info), dark)}
-  --warning-bg:         #{map-get(map-get($alerts, warning), light)}
-  --warning-fg:         #{map-get(map-get($alerts, warning), dark)}
-  --danger-bg:          #{map-get(map-get($alerts, danger), light)}
-  --danger-fg:          #{map-get(map-get($alerts, danger), dark)}
+//
+// COLORS
+// --------------------------------------
+
+// Base theme colors
+$dark:    hsl(0, 0%, 5%) !default
+$light:   hsl(0, 0%, 95%) !default
+$accent:  hsl(200, 100%, 40%) !default
+
+// Derivates
+$alt-dark:          lighten($dark, 10%) !default
+$alt-light:         darken($light, 10%) !default
+$accent-dark:       $accent !default
+$alt-accent-dark:   lighten($accent-dark, 20%) !default
+$accent-light:      $accent !default
+$alt-accent-light:  darken($accent-light, 20%) !default
+
+// Palettes: alternate-background, background, link, link-hover
+// Dark
+$palette-dark-1:    $alt-dark !default
+$palette-dark-2:    $dark !default
+$palette-dark-3:    $accent-dark !default
+$palette-dark-4:    $alt-accent-dark !default
+$palette-dark:      $palette-dark-1 $palette-dark-2 $palette-dark-3 $palette-dark-4 !default
+// Light
+$palette-light-1:   $alt-light !default
+$palette-light-2:   $light !default
+$palette-light-3:   $accent-light !default
+$palette-light-4:   $alt-accent-light !default
+$palette-light:     $palette-light-1 $palette-light-2 $palette-light-3 $palette-light-4 !default
+// Foreground colors
+$foreground-dark:   nth($palette-light, 2) !default
+$foreground-light:  nth($palette-dark, 2) !default
+
+// Tables alternate
+$table-alt-bg-dark:   nth($palette-dark, 1) !default
+$table-alt-fg-dark:   $foreground-dark !default
+$table-alt-bg-light:  nth($palette-light, 1) !default
+$table-alt-fg-light:  $foreground-light !default
+$table-alt: (light: (bg: $table-alt-bg-light, fg: $table-alt-fg-light), dark: (bg: $table-alt-bg-dark, fg: $table-alt-fg-dark)) !default
+
+// Links
+$link-color-dark:         nth($palette-dark, 3) !default
+$link-color-hover-dark:   nth($palette-dark, 4) !default
+$link-color-active-dark:  nth($palette-dark, 4) !default
+$link-color-light:        nth($palette-light, 3) !default
+$link-color-hover-light:  nth($palette-light, 4) !default
+$link-color-active-light: nth($palette-light, 4) !default
+// Decoration
+$link-decoration:         underline !default
+$link-decoration-hover:   underline !default
+$link-decoration-active:  none !default
+
+// Navigation
+$nav-bg-dark: nth($palette-dark, 3) !default
+$nav-fg-dark: nth($palette-dark, 2) !default
+$nav-bg-hover-dark: nth($palette-dark, 4) !default
+$nav-fg-hover-dark: nth($palette-dark, 2) !default
+$nav-bg-active-dark: nth($palette-dark, 4) !default
+$nav-fg-active-dark: nth($palette-dark, 2) !default
+$nav-dark: (bg: $nav-bg-dark, fg: $nav-fg-dark, hover-bg: $nav-bg-hover-dark, hover-fg: $nav-fg-hover-dark, active-bg: $nav-bg-active-dark, active-fg: $nav-fg-active-dark) !default
+$nav-bg-light: nth($palette-light, 3) !default
+$nav-fg-light: nth($palette-light, 2) !default
+$nav-bg-hover-light: nth($palette-light, 4) !default
+$nav-fg-hover-light: nth($palette-light, 2) !default
+$nav-bg-active-light: nth($palette-light, 4) !default
+$nav-fg-active-light: nth($palette-light, 2) !default
+$nav-light: (bg: $nav-bg-light, fg: $nav-fg-light, hover-bg: $nav-bg-hover-light, hover-fg: $nav-fg-hover-light, active-bg: $nav-bg-active-light, active-fg: $nav-fg-active-light) !default
+
+// FORMS
+$input-bg-dark: nth($palette-dark, 2) !default
+$input-bg-light: nth($palette-light, 2) !default
+
+// Headings
+$headings-fg-dark:           $foreground-dark !default
+$headings-fg-light:          $foreground-light !default
+$headings-bg-dark:           nth($palette-dark, 2) !default
+$headings-bg-light:          nth($palette-light, 2) !default
+// margins
+$headings-margins:              0.67 0.83 1 1.33 1.67 2.33 !default
+
+
+// Alerts light and dark colors
+$success-dark:  DarkGreen !default
+$success-light: #c8f1bd !default
+$info-dark:     MidnightBlue !default
+$info-light:    #b3cfed !default
+$warning-dark:  #a47d08 !default
+$warning-light: #fffec5 !default
+$danger-dark:   Maroon !default
+$danger-light:  #edb6b6 !default
+$success:       (light: $success-light, dark: $success-dark) !default
+$info:          (light: $info-light, dark: $info-dark) !default
+$warning:       (light: $warning-light, dark: $warning-dark) !default
+$danger:        (light: $danger-light, dark: $danger-dark) !default
+$alerts:        (success: $success, info: $info, warning: $warning, danger: $danger) !default
+
+// scrollbars
+// Dark
+$scrollbar-track-dark: nth($palette-dark, 1) !default
+$scrollbar-thumb-dark: nth($palette-dark, 2) !default
+@if $scrollbar-thumb-dark == $scrollbar-track-dark
+  $scrollbar-thumb-dark: lighten($scrollbar-track-dark, 10%)
+// Light
+$scrollbar-track-light: nth($palette-light, 1) !default
+$scrollbar-thumb-light: nth($palette-light, 2) !default
+@if $scrollbar-thumb-light == $scrollbar-track-light
+  $scrollbar-thumb-light: darken($scrollbar-track-light, 10%)
+
+//
+// BORDERS
+// Radius
+$border-radius:                 0 !default
+$form-border-radius:            $border-radius !default
+$input-border-radius:           $border-radius !default
+$blockquote-border-radius:      $border-radius !default
+// Width
+$border-width:                  0 !default
+$nav-border-bottom-width:       $border-width !default
+$form-border-width:             $border-width !default
+$input-border-width:            $border-width !default
+$footer-border-top-width:       $border-width !default
+$blockquote-border-width:       $border-width !default
+$alerts-border-width:           $border-width !default
+// Color
+$border-color-dark:             $foreground-dark !default
+$border-color-light:            $foreground-light !default
+$table-border-color-dark:       map-get(map-get($table-alt, dark), bg) !default
+$table-border-color-light:      map-get(map-get($table-alt, light), bg) !default
+// Headings
+$headings-border-bottom-dark:   $border-width !default
+$headings-border-bottom-light:  $border-width !default
+
+//
+// LAYOUT
+// --------------------------------------
+$max-width:           100em !default
+$content-width:       90% !default
+$mobile-width:        700px !default
+// Set to `sticky` for top navigation
+$nav-position:        static !default
+// Set to `-1` for navigation above header
+$nav-order:           0 !default
+// Set to `none` to hide header
+$header-display:      block !default
+// Set to `row` to move sidebar to the left
+$main-flex-direction: row-reverse !default
+// Set to `sticky` for sticky scroll
+$sidebar-width:       .4 !default
+$sidebar-position:    static !default
+
+//
+// FONTS
+// --------------------------------------
+$font-size:          15px !default
+$line-height:        1.4 !default
+$main-font:          sans-serif !default
+$code-font:          monospace !default
+$headings-font:      serif !default
+$headings-weight:    normal !default
+$nav-font-weight:    bold !default
+$nav-font-transform: uppercase !default
+
+// Z-INDEX
+$z-index-nav:           100 !default
+$z-index-notification:  1000 !default

@@ -68,7 +68,7 @@ login.setLink = (status) ->
       .off "click"
       .on "click", login.logout
       .attr "title", login.text
-    $('html').addClass "role-#{storage.get 'login.role'}"
+    $('html').removeClass('not-logged').addClass "role-#{storage.get 'login.role'} logged"
   if status is 'login'
     storage.clear 'login'
     $.ajaxSetup {}
@@ -76,7 +76,7 @@ login.setLink = (status) ->
       .off "click"
       .on "click", login.serve
       .attr 'title', "Login link"
-    $('html').removeClass 'role-admin role-guest'
+    $('html').removeClass('role-admin role-guest logged').addClass 'not-logged'
   true
 
 login.init()

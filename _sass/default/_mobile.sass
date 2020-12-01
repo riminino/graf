@@ -2,16 +2,32 @@
 // Small screens
 // --------------------------------------
 @media (max-width: $mobile-width)
+
+  .if-big-screen
+    display: none !important
   
   // Reduce font size
   html
     font-size: $font-size*0.95
 
-  //
   // Maximize width
-  // --------------------------------------
-  header, section, footer
+  header, footer
     padding: 1rem
+  section, aside#sidebar
+    padding: 2rem 1rem
+
+  // Lists
+  ul li, ol li
+    margin: 0
+
+  //
+  // Stack sidebar
+  // --------------------------------------
+  main
+    flex-direction: column
+  aside#sidebar
+    position: static
+    padding-bottom: 0
 
   //
   // Stack navigation and footer links
@@ -19,20 +35,26 @@
   nav
     display: block
     padding: 0
-    li span.active
-      background: var(--palette-3)
-    ul, ul li ul
+    details summary
+      padding: 0.4rem 0.6rem
+      &::after
+        margin-bottom: 0
+    ul, ul li ul, ul li:hover ul
       display: block
       position: static
       padding: 0
       text-align: left
+      border-width: 0
       li
         display: list-item
-        ul
-          padding-left: 2em
+        a, span
+          padding-top: 0.4rem
+          padding-bottom: 0.4rem
+    ul li ul, ul li:hover ul
+      padding-left: 2em
   footer
-    ul, ul:last-child
-      display: block
+    flex-direction: column
+    ul:last-child
       text-align: left
 
   //
@@ -40,15 +62,3 @@
   // --------------------------------------  
   .grid
     display: block
-
-  //
-  // Asides
-  // --------------------------------------
-
-  // aside.float-left, aside.float-right
-  //   float: none
-  //   width: 100%
-  //   padding-left: 0
-  //   padding-right: 0
-  //   margin-left: 0
-  //   margin-right: 0

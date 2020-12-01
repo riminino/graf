@@ -1,0 +1,2 @@
+{% for link in include.items %}<li><a href="{{ link.url | absolute_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a></li>
+{% endfor %}
