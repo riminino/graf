@@ -98,6 +98,7 @@ blockquote
 blockquote:not([class='success']):not([class='info']):not([class='warning']):not([class='danger']),
 blockquote[class='mode-opposite']
   border-width: $blockquote-border-width
+// Forms
 form
   border-radius: $form-border-radius
   border-width: $form-border-width
@@ -112,9 +113,16 @@ input[type="color"]
     border: none
   &::-webkit-color-swatch
     border: none
+// Table
+th, td
+  // override alert class cells
+  border-width: 1px !important
+  border-style: solid
+// Footer top border
 footer
   border-top-width: $footer-border-top-width
   border-top-style: solid
+// Navigation bottom border
 nav
   border-width: 0
   border-bottom-width: $nav-border-bottom-width
