@@ -11,7 +11,7 @@ body
   display: flex
   flex-direction: column
 
-header, footer, section, nav, aside#sidebar
+header, footer, section, nav, #aside-sidebar
   padding-left: calc((100% - #{$content-width}) / 2)
   padding-right: calc((100% - #{$content-width}) / 2)
 
@@ -20,17 +20,17 @@ main
   flex-direction: $main-flex-direction
   align-items: flex-start
   @if $main-flex-direction == row-reverse
-    aside#sidebar
+    #aside-sidebar
       padding-left: calc((100% - 90%) / 4)
     section
       padding-right: calc((100% - 90%) / 4)
   @if $main-flex-direction == row
-    aside#sidebar
+    #aside-sidebar
       padding-right: calc((100% - 90%) / 4)
     section
       padding-left: calc((100% - 90%) / 4)
 
-aside#sidebar
+#aside-sidebar
   flex: $sidebar-width
   padding-top: 3em
   padding-bottom: 3em
