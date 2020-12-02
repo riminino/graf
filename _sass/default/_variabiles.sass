@@ -31,14 +31,14 @@ $palette-light-3:   $accent-light !default
 $palette-light-4:   $alt-accent-light !default
 $palette-light:     $palette-light-1 $palette-light-2 $palette-light-3 $palette-light-4 !default
 // Foreground colors
-$foreground-dark:   nth($palette-light, 2) !default
-$foreground-light:  nth($palette-dark, 2) !default
+$fg-dark:   nth($palette-light, 2) !default
+$fg-light:  nth($palette-dark, 2) !default
 
 // Tables alternate
 $table-alt-bg-dark:   nth($palette-dark, 1) !default
-$table-alt-fg-dark:   $foreground-dark !default
+$table-alt-fg-dark:   $fg-dark !default
 $table-alt-bg-light:  nth($palette-light, 1) !default
-$table-alt-fg-light:  $foreground-light !default
+$table-alt-fg-light:  $fg-light !default
 $table-alt: (light: (bg: $table-alt-bg-light, fg: $table-alt-fg-light), dark: (bg: $table-alt-bg-dark, fg: $table-alt-fg-dark)) !default
 
 // Links
@@ -74,8 +74,8 @@ $input-bg-dark: nth($palette-dark, 2) !default
 $input-bg-light: nth($palette-light, 2) !default
 
 // Headings
-$headings-fg-dark:           $foreground-dark !default
-$headings-fg-light:          $foreground-light !default
+$headings-fg-dark:           $fg-dark !default
+$headings-fg-light:          $fg-light !default
 $headings-bg-dark:           nth($palette-dark, 2) !default
 $headings-bg-light:          nth($palette-light, 2) !default
 // margins
@@ -125,8 +125,8 @@ $footer-border-top-width:       $border-width !default
 $blockquote-border-width:       $border-width !default
 $alerts-border-width:           $border-width !default
 // Color
-$border-color-dark:             $foreground-dark !default
-$border-color-light:            $foreground-light !default
+$border-color-dark:             $fg-dark !default
+$border-color-light:            $fg-light !default
 $table-border-color-dark:       map-get(map-get($table-alt, dark), bg) !default
 $table-border-color-light:      map-get(map-get($table-alt, light), bg) !default
 // Headings
