@@ -1,0 +1,84 @@
+html, body,
+header, footer,
+form, input,
+blockquote,
+table, th, td,
+nav, nav ul
+  background: var(--bg)
+  color: var(--fg)
+  border-color: var(--grey)
+
+thead, tfoot,
+tbody:nth-child(odd):not(:first-child)
+  th, td
+    background: var(--grey)
+  code
+    color: initial
+
+a
+  color: var(--accent-1)
+  &:active
+    color: var(--bg)
+
+nav li
+  a:hover
+    color: var(--fg)
+  a, span, summary
+    color: var(--accent-1)
+    &.active
+      color: var(--fg)
+    &:active
+      color: var(--bg)
+
+summary
+  &:hover
+    color: var(--accent-1)
+
+// 
+// FIELDS
+// --------------------------------------
+
+// Background and foreground
+input:not([type=submit]):not([type=reset]):not([type=button]), textarea
+  background: var(--bg)
+  color: var(--fg)
+
+//
+// ALERTS
+// --------------------------------------
+.success, .info, .warning, .danger
+  h1, h2, h3, h4, h5, h6
+    background: inherit
+    color: inherit
+
+@each $alert-name, $alert in $alerts
+  .#{$alert-name}
+    color: var(--#{$alert-name}-fg)
+    border-width: $alerts-border-width
+    a, a:visited
+      color: var(--#{$alert-name}-fg)
+      text-decoration: underline
+    a:hover
+      text-decoration: none
+    a:active
+      color: var(--bg)
+  *:not(td):not(th).#{$alert-name}
+    border-color: var(--#{$alert-name}-border)
+
+
+// Typography
+ins
+  color: var(--success-fg)
+del
+  color: var(--danger-fg)
+
+// Scrollbars
+*
+  scrollbar-color: var(--accent-1) var(--bg)
+  scrollbar-width: auto
+  &::-webkit-scrollbar-track
+    background: var(--bg)
+  &::-webkit-scrollbar-thumb
+    background: var(--accent)
+  &::-webkit-scrollbar
+    width: auto

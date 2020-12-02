@@ -1,29 +1,22 @@
-// Palette
-$palette-dark: Black Black DodgerBlue DodgerBlue
-$palette-light: White White Blue Blue
-// Navigation
-$nav-dark: (bg: Black, fg: DodgerBlue, hover-bg: Black, hover-fg: White, active-bg: Black, active-fg: Black)
-$nav-light: (bg: White, fg: Blue, hover-bg: White, hover-fg: Black, active-bg: White, active-fg: White)
-$nav-font-weight: normal
-// Tables
-$table-alt: (light: (bg: Black, fg: White), dark: (bg: White, fg: Black))
-// Links
-$link-color-active-dark: Black
-$link-color-active-light: White
-$link-decoration: none
-// Borders
-$border-width: 1px
-$alerts-border-width: 0
-// Page top
-$nav-position: sticky
-$header-display: none
-// Sidebar
-$sidebar-position: sticky
-// Scrollbar
-$scrollbar-thumb-dark: DodgerBlue
-$scrollbar-thumb-light: Blue
-
+//
+// IMPORT CONTRAST
+// --------------------------------------
+@import contrast/variabiles
+@import contrast/mode
+@import contrast/colors
 //
 // IMPORT DEFAULT
 // --------------------------------------
-@import default
+@import default/base
+@import default/typography
+@import default/footer
+@import default/tables
+@import default/forms
+@import default/code
+@import default/links
+@import default/navigation
+@import default/details
+@import default/notifications
+@import default/grid
+@import default/helpers
+@import default/mobile

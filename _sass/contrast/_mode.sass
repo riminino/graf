@@ -1,0 +1,33 @@
+\:root, .mode-light
+  --fg:                 #{$black}
+  --bg:                 #{$white}
+  --grey:               #{darken($white, 20%)}
+  @each $accent in $accents-light
+    $index: index($accent, $accents-light)
+    --accent-#{$index}: #{$accent}
+  // Alerts
+  --success-border:     #{map-get(map-get($alerts, success), light)}
+  --success-fg:         #{map-get(map-get($alerts, success), dark)}
+  --info-border:        #{map-get(map-get($alerts, info), light)}
+  --info-fg:            #{map-get(map-get($alerts, info), dark)}
+  --warning-border:     #{map-get(map-get($alerts, warning), light)}
+  --warning-fg:         #{map-get(map-get($alerts, warning), dark)}
+  --danger-border:      #{map-get(map-get($alerts, danger), light)}
+  --danger-fg:          #{map-get(map-get($alerts, danger), dark)}
+
+.mode-dark
+  --fg:                 #{$white}
+  --bg:                 #{$black}
+  --grey:               #{lighten($black, 20%)}
+  @each $accent in $accents-dark
+    $index: index($accent, $accents-dark)
+    --accent-#{$index}: #{$accent}
+  // Alerts
+  --success-border:     #{map-get(map-get($alerts, success), dark)}
+  --success-fg:         #{map-get(map-get($alerts, success), light)}
+  --info-border:        #{map-get(map-get($alerts, info), dark)}
+  --info-fg:            #{map-get(map-get($alerts, info), light)}
+  --warning-border:     #{map-get(map-get($alerts, warning), dark)}
+  --warning-fg:         #{map-get(map-get($alerts, warning), light)}
+  --danger-border:      #{map-get(map-get($alerts, danger), dark)}
+  --danger-fg:          #{map-get(map-get($alerts, danger), light)}
