@@ -13,13 +13,10 @@ This is a paragraph with a [link](#) and a disabled [one](#){:disabled=""}.
 
 ## Table of contents
 
-The first line select an ordered `1. toc` or unordered `- toc` list, the second line `{:toc}` replace the first one with the headings list.
-
-* toc
-{:toc}
+The first line will be replaced with an ordered `1. toc` or unordered `- toc` nested list of headings, the second line must be `{:toc}`.
 
 - The class `{:.no_toc}` exclude a heading from the list
-- If the page has the `toc` widget in the `sidebar` array, the table of contents is moved on the sidebar
+- If the page has the `toc` widget in the `sidebar` array, the table of contents is moved to the sidebar
 
 ## Details
 
@@ -251,7 +248,7 @@ This is a note[^1]
 
 [^1]: This is the footnote
 
-The note will be rendered at the end of the document:
+The note will be rendered at the end of the document with this markup
 
 ```html
 <div class="footnotes" role="doc-endnotes">

@@ -14,7 +14,7 @@ css:
   theme: default
 ```
 
-## Dark and light mode
+## Light and dark mode
 
 The mode is stored in `storage` and the `<html>`{:.language-html} will have the corresponding  class: `mode-light` or `mode-dark`.
 
@@ -24,14 +24,15 @@ The mode is stored in `storage` and the `<html>`{:.language-html} will have the 
 
 ## Syntax highlight
 
-Configurable in `_config.yml` for dark and light modes.  
+Configurable in `_config.yml` for light and dark modes as a string with `rouge` or `pygments` folder, and the filename without extension.
+
 Preview of __Pygments__ and __Rouge__ color scheme: <https://trasparente.github.io/rosso/>.
 
 ```yml
 css:
   syntax:
-    dark: rouge/gruvbox
     light: rouge/github
+    dark: rouge/gruvbox
 ```
 
 ## Customization
