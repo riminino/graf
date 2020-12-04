@@ -13,26 +13,11 @@ jobs:
     steps:
       - uses: actions/github-script@v3
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.ACTIONS }}
           script: |
-            // Get GitHub Pages to get source branch
-            //const pages = github.repos.getPages({
-            //  owner: context.repo.owner,
-            //  repo: context.repo.repo
-            //});
-            
-            // Get branch to get branch sha
-            //const branch = await github.repos.getBranch({
-            //  owner: context.repo.owner,
-            //  repo: context.repo.repo,
-            //  branch: pages.source.branch
-            //});
-            
-            // Request Pages Build
-            github.repos.requestPagesBuild({
+            const build = await github.repos.requestPagesBuild({
               owner: context.repo.owner,
               repo: context.repo.repo
             })
-            
-            // Output
+            console.log(build)
             console.log(context)
