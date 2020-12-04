@@ -16,10 +16,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             // Get GitHub Pages to get source branch
-            const pages = github.repos.getPages({
-              owner: context.repo.owner,
-              repo: context.repo.repo
-            });
+            //const pages = github.repos.getPages({
+            //  owner: context.repo.owner,
+            //  repo: context.repo.repo
+            //});
             
             // Get branch to get branch sha
             //const branch = await github.repos.getBranch({
@@ -35,4 +35,4 @@ jobs:
             })
             
             // Output
-            console.log(pages)
+            console.log(context)
