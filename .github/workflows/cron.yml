@@ -3,7 +3,8 @@ name: Request Page Build
 on:
   schedule:
     # At minute 1 past every hour
-    - cron:  '1 */1 * * *'
+    #- cron:  '1 */1 * * *'
+    - cron: '*/15 * * * *'
 
 jobs:
   build:
@@ -14,15 +15,23 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            // Get branch sha
-            const sha = octokit.repos.getBranch({
+            // Get GitHub Pages branch
+            const pages = github.repos.getPages({
               owner: context.repo.owner,
-              repo: context.repo.repo,
-              branch: main
+              repo: context.repo.repo
             });
+            
+            // Get branch sha
+            //const sha = await github.repos.getBranch({
+            //  owner: context.repo.owner,
+            //  repo: context.repo.repo,
+            //  branch: pages_branch
+            //});
              
             github.repos.requestPagesBuild({
               owner: context.repo.owner,
               repo: context.repo.repo
             })
-            console.log(sha)
+            
+            // Output
+            console.log(pages, pages.source.branch)
