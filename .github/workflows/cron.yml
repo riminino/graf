@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/github-script@v3
         with:
-          github-token: ${{secrets.ACTIONS}}
+          github-token: ${{ secrets.ACTIONS }}
           script: |
             github.repos.requestPagesBuild({
               owner: context.repo.owner,
