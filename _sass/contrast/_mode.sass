@@ -2,9 +2,7 @@
   --fg:                 #{$black}
   --bg:                 #{$white}
   --grey:               #{darken($white, 20%)}
-  @each $accent in $accents-light
-    $index: index($accent, $accents-light)
-    --accent-#{$index}: #{$accent}
+  --accent:             #{nth(nth($accents-light, 1), 2)}
   // Alerts
   --success-border:     #{map-get(map-get($alerts, success), light)}
   --success-fg:         #{map-get(map-get($alerts, success), dark)}
@@ -14,14 +12,15 @@
   --warning-fg:         #{map-get(map-get($alerts, warning), dark)}
   --danger-border:      #{map-get(map-get($alerts, danger), light)}
   --danger-fg:          #{map-get(map-get($alerts, danger), dark)}
+  @each $type, $accent in $accents-light
+    &.#{$type}
+      --accent:         #{$accent}
 
 .mode-dark
   --fg:                 #{$white}
   --bg:                 #{$black}
   --grey:               #{lighten($black, 20%)}
-  @each $accent in $accents-dark
-    $index: index($accent, $accents-dark)
-    --accent-#{$index}: #{$accent}
+  --accent:             #{nth(nth($accents-dark, 1), 2)}
   // Alerts
   --success-border:     #{map-get(map-get($alerts, success), dark)}
   --success-fg:         #{map-get(map-get($alerts, success), light)}
@@ -31,3 +30,6 @@
   --warning-fg:         #{map-get(map-get($alerts, warning), light)}
   --danger-border:      #{map-get(map-get($alerts, danger), dark)}
   --danger-fg:          #{map-get(map-get($alerts, danger), light)}
+  @each $type, $accent in $accents-dark
+    &.#{$type}
+      --accent:         #{$accent}

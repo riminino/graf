@@ -8,18 +8,25 @@ dateTime = (e) ->
   decimals = $(e).data("decimals") || 0
   diff = new Date().getTime() - (new Date(Date.parse $(e).attr "datetime").getTime()) #+ (12 * hour)) Consider noon instead of midnight
   absolute = Math.abs diff
+  # 's' function
+  s = (value) -> if value >= 2 then 's' else ''
   # Check range
   if absolute < hour
-    moment = "#{(absolute / minute).toFixed decimals} minutes"
+    value = (absolute / minute).toFixed decimals
+    moment = "#{value} minute#{s value}"
   else if absolute < day
-    moment = "#{(absolute / hour).toFixed decimals} hours"
+    value = (absolute / hour).toFixed decimals
+    moment = "#{value} hour#{s value}"
   else if absolute < week
-    moment = "#{(absolute / day).toFixed decimals} days"
+    value = (absolute / day).toFixed decimals
+    moment = "#{value} day#{s value}"
   else if absolute < 4 * week
-    moment = "#{(absolute / week).toFixed decimals} weeks"
+    value = (absolute / week).toFixed decimals
+    moment = "#{value} week#{s value}"
   else if absolute < year
-    moment = "#{(absolute / month).toFixed decimals} months"
-  else moment = "#{(absolute / year).toFixed decimals} years"
+    value = (absolute / month).toFixed decimals
+    moment = "#{value} month#{s value}"
+  else moment = "#{(absolute / year).toFixed decimals} year#{s value}"
   # Past or Future
   out = if diff > 0 then "#{moment} ago" else "in #{moment}"
   # Embed or add title attribute

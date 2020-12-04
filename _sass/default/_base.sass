@@ -17,31 +17,39 @@ header, footer, section, nav, #aside-sidebar
 
 main
   display: flex
-  flex-direction: $main-flex-direction
+  flex-direction: row-reverse
   align-items: flex-start
-  @if $main-flex-direction == row-reverse
-    #aside-sidebar
-      padding-left: calc((100% - 90%) / 4)
-    section
-      padding-right: calc((100% - 90%) / 4)
-  @if $main-flex-direction == row
-    #aside-sidebar
-      padding-right: calc((100% - 90%) / 4)
-    section
-      padding-left: calc((100% - 90%) / 4)
+
+html:not(.right-sidebar):not(.left-sidebar) #aside-sidebar
+  display: none
+
+.right-sidebar
+  #aside-sidebar
+    padding-left: calc((100% - 90%) / 4)
+  section
+    padding-right: calc((100% - 90%) / 4)
+
+.left-sidebar
+  main
+    flex-direction: row
+  #aside-sidebar
+    padding-right: calc((100% - 90%) / 4)
+  section
+    padding-left: calc((100% - 90%) / 4)
 
 #aside-sidebar
   flex: $sidebar-width
   padding-top: 3em
   padding-bottom: 3em
-  @if $sidebar-position == sticky
-    position: sticky
-    top: 3em
+
+.sticky-sidebar #aside-sidebar
+  position: sticky
+  top: 3em
 
 // Add 2.6em padding-top to next element (header or section)
-@if $nav-position == sticky
+.sticky-nav
   nav
-    position: $nav-position
+    position: sticky
     top: 0
   \:target
     scroll-margin-top: 3em
@@ -50,8 +58,8 @@ main
 header, footer
   padding-top: 2em
   padding-bottom: 2em
-header
-  display: $header-display
+.no-header header
+  display: none
 
 section
   padding-top: 3em
@@ -75,7 +83,7 @@ blockquote
 ul, ol
   padding-left: 2em
   li
-    margin: 0.2em 0
+    margin: 0
 ul
   list-style-type: initial
 dl

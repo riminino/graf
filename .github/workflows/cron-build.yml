@@ -1,0 +1,19 @@
+on:
+  # Automatically execute this workflow on a schedule.
+  schedule:
+    # POSIX-compatible cron syntax is supported.
+    # At minute 0 past every hour
+    - cron:  '0 */1 * * *'
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.FOR_GITHUB_ACTIONS}}
+          script: |
+            github.repos.requestPagesBuild({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            })

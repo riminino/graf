@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en-US" id="top">
+<html lang="en-US" id="top" class="{{ page.classes | join: " " }}">
 {% include page/head.html %}
 <body>
 <div id="notification"></div>
 {% include page/header.html %}
 {% include page/nav.html %}
 <main>
-{% if page.sidebar %}{% include page/sidebar.html %}{% endif %}
+{% include page/sidebar.html %}
 {% include page/main.html %}
 </main>
 <footer>

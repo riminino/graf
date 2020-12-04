@@ -36,6 +36,13 @@ nav
 summary
   &:hover
     color: var(--link-color-hover)
+    &::marker
+      color: var(--fg)
+  &:active
+    color: var(--link-color-active)
+    &::marker
+      color: var(--fg)
+
 
 // borders
 form, footer, blockquote, textarea, nav,
@@ -69,8 +76,12 @@ input:not([type=submit]):not([type=reset]):not([type=button]), textarea
 
 // BUTTONS
 // --------------------------------------
-input[type=submit], input[type="reset"], input[type=button], button
-  // color: black
+// Buttons color
+input[type="reset"]:enabled,
+input[type="button"]:enabled,
+input[type="submit"]:enabled,
+button:enabled
+  color: Black
 
 // Special
 // input[type=button][disabled], button[disabled]

@@ -3,13 +3,28 @@ weight: 3
 sidebar: [toc]
 ---
 
-# Markdown
+# Kramdown
 {:.no_toc}
 
 * toc
 {:toc}
 
-This is a paragraph with a [link](#) and a disabled [one](#){:disabled=""}.
+Kramdown is the markdown converter for Jekyll.
+
+If an HTML tag has an attribute `markdown="1"` then the content of the tag is parsed as [span level elements](https://kramdown.gettalong.org/syntax.html#html-spans "Kramdown Syntax > HTML Spans").
+
+Links
+: With a title on hover `[link](url "title")`
+: Reference name `[link][reference]` and later `[reference]: url "title"`
+
+Classes and ids
+: `{: .class #id}`
+
+Images
+: `![alt-text](url)`
+
+Attributes
+: `{: attribute="value"}`
 
 ## Table of contents
 
@@ -20,14 +35,21 @@ The first line will be replaced with an ordered `1. toc` or unordered `- toc` ne
 
 ## Details
 
+```html
 <details>
-  <summary>Open detail</summary>
+  <summary>Handler</summary>
+  Content
+</details>
+```
+
+<details>
+  <summary>Handler</summary>
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </details>
 
 ## Forms
 
-Top margin
+Forms elements render
 
 <form class="prevent-default">
 <h3>Form title</h3>
@@ -104,20 +126,20 @@ Top margin
 
 <!-- Button -->
 <div>
+  <label markdown="1">`input[type]`</label>
   <input type="submit" value="Submit">
   <input type="reset" name="" value="Reset">
   <input type="button" disabled name="" value="Disabled">
 </div>
 <!-- Button -->
 <div>
+  <label markdown="1">`button[type]`</label>
   <button type="submit">Submit</button>
   <button type="reset">Reset</button>
   <button type="button" disabled>Disabled</button>
 </div>
 
 </form>
-
-Check bottom margin
 
 ## Code
 

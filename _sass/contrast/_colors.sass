@@ -1,6 +1,6 @@
 html, body,
 header, footer,
-form, input,
+form, input:not([type=submit]):not([type=reset]):not([type=button]), textarea,
 blockquote,
 table, th, td,
 nav, nav ul
@@ -16,7 +16,9 @@ tbody:nth-child(odd):not(:first-child)
     color: initial
 
 a
-  color: var(--accent-1)
+  color: var(--accent)
+  &:hover
+    color: var(--fg)
   &:active
     color: var(--bg)
 
@@ -24,7 +26,7 @@ nav li
   a:hover
     color: var(--fg)
   a, span, summary
-    color: var(--accent-1)
+    color: var(--accent)
     &.active
       color: var(--fg)
     &:active
@@ -32,7 +34,13 @@ nav li
 
 summary
   &:hover
-    color: var(--accent-1)
+    color: var(--accent)
+    &::marker
+      color: var(--fg)
+  &:active
+    color: var(--bg)
+    &::marker
+      color: var(--fg)
 
 // 
 // FIELDS
@@ -42,6 +50,11 @@ summary
 input:not([type=submit]):not([type=reset]):not([type=button]), textarea
   background: var(--bg)
   color: var(--fg)
+
+// ADDITIONAL PROPERTIES and ARRAY ITEMS
+.additional-property > div:not(.property),
+.array > div:not(.array-item)
+  border-color: var(--grey)
 
 //
 // ALERTS
@@ -74,7 +87,7 @@ del
 
 // Scrollbars
 *
-  scrollbar-color: var(--accent-1) var(--bg)
+  scrollbar-color: var(--accent) var(--bg)
   scrollbar-width: auto
   &::-webkit-scrollbar-track
     background: var(--bg)

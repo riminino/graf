@@ -16,6 +16,7 @@ defaults:
     values:
       layout: default
       weight: 1
+      classes: [right-sidebar no-header sticky-nav sticky-sidebar]
       sidebar: [toc]
 
 # kramdown syntax is normally not processed inside an HTML tag

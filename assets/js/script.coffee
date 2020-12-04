@@ -5,13 +5,13 @@
 {% include scripts/storage.coffee %}
 {% include scripts/busy.coffee %}
 {% include scripts/login.coffee %}
-{% include scripts/datetime.coffee %}
+{% include scripts/widgets/datetime.coffee %}
+{% include scripts/widgets/mode_toggle.coffee %}
+{% include scripts/widgets/sidebar_toc.coffee %}
 {% include scripts/forms.coffee %}
 {% include scripts/commit.coffee %}
 {% include scripts/pull_request.coffee %}
 {% include scripts/notifications.coffee %}
-{% include scripts/mode_toggle.coffee %}
-{% include scripts/toc.coffee %}
 
 # Get storage
 # --------------------------------------

@@ -1,5 +1,5 @@
 ###
-  Store an object in `localStorage`, LZ compressed to Base 64. The key si the string {{ site.github.repository_url }}
+  Store an object in `localStorage`, LZ compressed to Base 64. The key si the string {{ site.github.repository_nwo }}
   @example
   // Initialize storage in localStorage, called the first `get` or `set`
   storage.init()
@@ -10,7 +10,7 @@
   // Get a key's value or whole object
   storage.get([key])
   @example
-  // Remove a key value pair or clear whole object
+  // Remove a key/value pair or clear whole object
   storage.clear([key])
   @example
   // Low level compression and storage
