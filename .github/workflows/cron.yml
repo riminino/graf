@@ -1,7 +1,9 @@
+# Don't use hyphens on the filename
 name: Request Page Build
 on:
   schedule:
-    - cron:  '*/15 * * * *'
+    # At minute 1 past every hour
+    - cron:  '1 */1 * * *'
 
 jobs:
   build:
@@ -10,7 +12,7 @@ jobs:
     steps:
       - uses: actions/github-script@v3
         with:
-          github-token: ${{ secrets.ACTIONS }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.repos.requestPagesBuild({
               owner: context.repo.owner,
