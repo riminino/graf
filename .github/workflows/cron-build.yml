@@ -1,7 +1,7 @@
 name: Request Page Build
 on:
   schedule:
-    - cron:  '*/30 * * * *'
+    - cron:  '*/15 * * * *'
 
 jobs:
   build:
@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/github-script@v3
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.ACTIONS}}
           script: |
             github.repos.requestPagesBuild({
               owner: context.repo.owner,
