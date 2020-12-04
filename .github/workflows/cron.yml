@@ -3,8 +3,9 @@ name: Request Page Build
 on:
   schedule:
     # At minute 1 past every hour
-    - cron:  '1 */1 * * *'
-    #- cron: '*/15 * * * *'
+    #- cron:  '1 */1 * * *'
+    # At minute 1 past every 24th hour
+    -cron: '1 */24 * * *'
 
 jobs:
   build:
