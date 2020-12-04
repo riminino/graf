@@ -30,4 +30,4 @@ Excerpt
 
 Permalink
 - `pretty` gives the date if present `/:categories/:year/:month/:day/:title/`
-- Override with `permalink: /:collection/:name/` with `name` the filename slug
+- Override with `permalink: /:collection/:name/` where `name` is the filename slug
