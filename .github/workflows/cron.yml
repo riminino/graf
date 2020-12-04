@@ -35,4 +35,4 @@ jobs:
             })
             
             // Output
-            console.log(pages, pages.source.branch)
+            console.log(pages)
