@@ -14,7 +14,15 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            // Get branch sha
+            const sha = octokit.repos.getBranch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              branch: main
+            });
+             
             github.repos.requestPagesBuild({
               owner: context.repo.owner,
               repo: context.repo.repo
             })
+            console.log(sha)
