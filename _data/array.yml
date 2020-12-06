@@ -1,8 +1,3 @@
-array:
-  - d
-tasks:
-  - title: s
-    details: da
-    done: true
-  - title: 5
-    details: 65
+arrayItems:
+  - obj1: fg
+    obj2: fg
