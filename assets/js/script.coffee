@@ -3,15 +3,16 @@
 # Includes
 # --------------------------------------
 {% include scripts/storage.coffee %}
+{% include scripts/widgets/mode_toggle.coffee %}
 {% include scripts/busy.coffee %}
 {% include scripts/login.coffee %}
 {% include scripts/widgets/datetime.coffee %}
-{% include scripts/widgets/mode_toggle.coffee %}
 {% include scripts/widgets/sidebar_toc.coffee %}
 {% include scripts/forms.coffee %}
 {% include scripts/commit.coffee %}
 {% include scripts/pull_request.coffee %}
 {% include scripts/notifications.coffee %}
+{% include scripts/write_page.coffee %}
 
 # Get storage
 # --------------------------------------
@@ -24,24 +25,7 @@ $("form.prevent-default").on "submit", (e) -> e.preventDefault()
 # Initialize serialize
 $.serializeJSON.defaultOptions.parseAll = true
 $.serializeJSON.defaultOptions.skipFalsyValuesForTypes = "text,number,date,password,tel,email".split ","
+# textarea has no type
 
 # YML preview
 # console.log jsyaml.dump {{site.data.test.widgets | jsonify }}
-
-# Storage
-# ls =
-#   set: (key, value) ->
-#     localStorage.setItem("{{ site.github.repository_nwo }}/#{key}", value)
-#     ls
-#   get: (key) ->
-#     if key
-#       return localStorage.getItem "{{ site.github.repository_nwo }}/#{key}"
-#     else
-#       for own key of localStorage
-#         console.log key, localStorage.getItem key
-#       return
-#   clear: (key) ->
-#     if key then localStorage.removeItem key else localStorage.clear()
-#     ls
-# 
-# ls.get()

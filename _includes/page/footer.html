@@ -1,10 +1,9 @@
-{%- assign gh = site.github -%}
-{%- assign repo = site.github.public_repositories | where: "full_name", site.github.repository_nwo | first -%}
 <ul>
-  <li><a href="{{ gh.repository_url }}">Repository</a> updated {% include widgets/datetime.html datetime=repo.updated_at replace=true %}</li>
-  <li><a href="{{ gh.repository_url | append: '/blob/' | append: repo.default_branch | append: '/' | append: page.path }}">Page</a> code</li>
+  <li>GitHub links</li>
+  <li><a href="{% include widgets/github_url.html %}">Repository</a></li>
+  <li><a href="{% include widgets/github_url.html path=page.path %}">Page</a></li>
 </ul>
 <ul>
-  <li><a href="#top">Top</a></li>
-  <li>{% include widgets/mode_toggle_link.html %}</li>
+  <li>Scroll to <a href="#top">Top</a></li>
+  <li>Toggle mode to {% include widgets/mode_toggle_link.html %}</li>
 </ul>

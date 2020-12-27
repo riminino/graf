@@ -1,7 +1,17 @@
 $("form").each ->
   form = $ @
-  schema = if form.data 'schema' then JSON.parse decodeURIComponent form.data('schema')
-  
+  schema = if form.data 'schema' then JSON.parse decodeURIComponent form.data('schema') else {}
+
+  # DIV `show-if-name` `show-if-value`
+  form.find('[show-if-name]').each ->
+    $(@).hide()
+    name = $(@).attr 'show-if-name'
+    value = $(@).attr 'show-if-value'
+    form.find("[name=#{name}]").each (i, e) =>
+      $(e).on 'change', => if $(e).val() is value then $(@).show() else $(@).hide()
+      return
+    return
+
   # Update RANGE output
   form.find("input[type=range]").each ->
     $(@).on "input", (e) -> $(e.target).closest('div').find("output").val $(e.target).val()
@@ -63,7 +73,7 @@ $("form").each ->
       $(@).find(":input").attr "id", (i, val) -> "#{val}#{timestamp}"
       return
     # Append item
-    container_div.append template
+    container_div.find("template").after template
     return
 
   # Remove array item
@@ -74,7 +84,7 @@ $("form").each ->
 
   # Submit event
   form.on "submit", (e) ->
-    # Check if is live
+    # Check if has a path
     if schema.path
       # Check if logged
       if !storage.get 'login.user'
@@ -83,13 +93,13 @@ $("form").each ->
       else if storage.get('login.role') isnt 'admin'
         notification 'Login as admin', 'error'
       # Admin, check if fork
-      else if storage.get('repository.fork')
+      else if storage.get('repository.fork') and schema.personal
         # Admin and fork, commit and pull request
         pull_request form
-      # Admin, no fork, commit
+      # Admin, no fork or no personal, commit
       else commit form
     # No path, log yaml
-    else console.log schema.path
+    else console.log jsyaml.dump form.serializeJSON()
     return
 
   return

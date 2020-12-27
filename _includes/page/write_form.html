@@ -1,0 +1,108 @@
+<form class="prevent-default" id="write-page">
+
+  <!-- PAGE TYPE: PAGE OR POST -->
+  <div>
+    <label for="type">Page type</label>
+    <label class="radio">
+      <input type="radio" id="type" name="type" data-boolean="true" checked value="page"> Page
+    </label>
+    <label class="radio">
+      <input type="radio" id="type" name="type" data-boolean="true" value="post"> Post in a collection
+    </label>
+  </div>
+
+  <!-- IF POST SELECT COLLECTION -->
+  <div show-if-name='type' show-if-value='post'>
+    <label for="collection">Collection</label>
+    <select id="collection" name="collection">
+    {% for collection in site.collections %}<option value="{{ collection.label }}">{% assign default_title = collection.label | capitalize %}{{ collection.title | default: default_title }}</option>
+    {% endfor %}
+      <option value="drafts">Drafts</option>
+    </select>
+  </div>
+
+  <!-- IF POST SELECT SITE CATEGORIES -->
+  {%- assign fake = "zio mio, napoli 2, Como 13" | split: ", " -%}
+  {%- if fake.size > 0 -%}
+  <h4 show-if-name="type" show-if-value="post">Categories</h4>
+  <div show-if-name="type" show-if-value="post">{% for category in fake %}
+    <label class="boolean" for="categories[{{ category }}]">{{ category }}</label>
+    <input type="checkbox" name="categories[{{ category }}]" id="categories[{{ category }}]" value="true" data-boolean="true">
+    {%- unless forloop.last -%}<br>{%- endunless -%}{% endfor %}
+  </div>
+  {%- endif -%}
+
+  <!-- IF POST ADD NEW CATEGORY -->
+  <div class="array" show-if-name="type" show-if-value="post">
+    <div>
+      <label>New category <a href="#array" data-add="new_category" title="Add item" class="prevent-default">Add</a>
+      </label>
+    </div>
+    <template>
+      <div class="array-item">
+        <div>
+        <label for="new_category[]">new_category[] <a href="#new_category[]" title="Remove item" data-remove="new_category[]" class="prevent-default">Remove</a></label>
+        <input type="text" id="new_category[]" name="new_category[]" />
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- IF POST SELECT SITE TAGS -->
+  {%- if fake.size > 0 -%}
+  <h4 show-if-name="type" show-if-value="post">Tags</h4>
+  <div show-if-name="type" show-if-value="post">{% for tag in fake %}
+    <label class="boolean" for="tags[{{ tag }}]">{{ tag }}</label>
+    <input type="checkbox" name="tags[{{ tag }}]" id="tags[{{ tag }}]" value="true" data-boolean="true">
+    {%- unless forloop.last -%}<br>{%- endunless -%}{% endfor %}
+  </div>
+  {%- endif -%}
+
+  <!-- IF POST ADD NEW TAG -->
+  <div class="array" show-if-name="type" show-if-value="post">
+    <div>
+      <label>New tag <a href="#array" data-add="new_tag" title="Add item" class="prevent-default">Add</a>
+      </label>
+    </div>
+    <template>
+      <div class="array-item">
+        <div>
+        <label for="new_tag[]">new_tag[] <a href="#new_tag[]" title="Remove item" data-remove="new_tag[]" class="prevent-default">Remove</a></label>
+        <input type="text" id="new_tag[]" name="new_tag[]" />
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- PAGE TITLE -->
+  <div>
+    <label for="title">Page title</label>
+    <input type="text" name="title" id="title" required>
+  </div>
+
+  <!-- PREPEND DATE TO FILENAME -->
+  <div show-if-name="collection" show-if-value="posts">
+    <label class="boolean" for="date">Prepend date to filename</label>
+    <input type="checkbox" name="date" id="date" value="true" data-boolean="true">
+  </div>
+
+  <!-- FILENAME AND PATH -->
+  <div>
+    <label for="filename">Filename</label>
+    <input type="text" name="filename" id="filename">
+    <span markdown="1">Default to title slug and `.md` extension<br>Optional date for `posts`</span>
+  </div>
+  <div>
+    <label for="path">Path</label>
+    <input type="text" name="path" id="path">
+    <span>Defalt to categories and collection</span>
+  </div>
+
+  <div>
+    <label for="text">Page content</label>
+    <textarea name="text" id="text" class="resize"></textarea>
+  </div>
+  <div class="buttons">
+    <button type="submit">Submit</button> <button type="reset">Reset</button>
+  </div>
+</form>

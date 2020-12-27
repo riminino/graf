@@ -1,7 +1,7 @@
 \:root, .mode-light
   --fg:                 #{$black}
   --bg:                 #{$white}
-  --grey:               #{darken($white, 20%)}
+  --grey:               #{$grey-light}
   --accent:             #{nth(nth($accents-light, 1), 2)}
   // Alerts
   --success-border:     #{map-get(map-get($alerts, success), light)}
@@ -19,7 +19,7 @@
 .mode-dark
   --fg:                 #{$white}
   --bg:                 #{$black}
-  --grey:               #{lighten($black, 20%)}
+  --grey:               #{$grey-dark}
   --accent:             #{nth(nth($accents-dark, 1), 2)}
   // Alerts
   --success-border:     #{map-get(map-get($alerts, success), dark)}

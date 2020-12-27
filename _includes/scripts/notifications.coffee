@@ -39,5 +39,4 @@ notification = (text, cls="success") ->
 $('#notification').on 'click', -> $(@).hide()
 
 # Populate logs details
-$('.logs').append(Array.from(storage.get('storage.logs'), (log) -> return_log log
-))
+$('.logs').append(Array.from(storage.get('storage.logs'), (log) -> return_log log ))

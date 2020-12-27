@@ -8,6 +8,7 @@ commit = (form) ->
   busy form, true
   get = $.get url
   get.fail (request, status, error) ->
+    # Check if error is 'Not Found'
     if error == 'Not Found'
       # Create file
       load = {message: "Create #{path}", content: btoa yml}
@@ -16,11 +17,13 @@ commit = (form) ->
       create.done (data, status) -> notification "#{load.message} #{status}"
       create.always -> busy form, false
     else
+      # Some error
       notification "Get #{status} #{error}", 'error'
       busy form, false
     return
   # Update file
   get.done (data, status) ->
+    # Check if `type` is `array`, append new element
     content = if schema.type is 'array' then atob(data.content) + yml else yml
     load = {message: "Update #{path}", sha: data.sha, content: btoa content}
     update = $.ajax url, {method: 'PUT', data: JSON.stringify load}

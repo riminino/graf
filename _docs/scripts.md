@@ -35,7 +35,7 @@ Remove a key/value pair or clear whole object
 
 ## Login
 
-A login link `<a href="#login">Login</a>`{:.language-html} will ask for a GitHub personal token <https://github.com/settings/tokens/new>.
+A login link `<a href="#" class="login-link">Login</a>`{:.language-html} will ask for a GitHub personal token <https://github.com/settings/tokens/new>.
 
 This token will be hashed and stored in `storage` until a logout.
 
@@ -48,15 +48,15 @@ The `<html>`{:.language-html} element will have the corresponding login and user
 - `class='role-guest'`{:.language-ruby}
 
 Elements with corresponding class will show up:
-- `class='if-logged'`{:.language-ruby} hidden if not logged
-- `class='if-role-admin'`{:.language-ruby} hidden if logged as a guest or not logged
-- `class='if-role-guest'`{:.language-ruby} hidden if logged as admin or not logged
+- `class='show-if-logged'`{:.language-ruby} hidden if not logged
+- `class='show-if-role-admin'`{:.language-ruby} hidden if logged as a guest or not logged
+- `class='show-if-role-guest'`{:.language-ruby} hidden if logged as admin or not logged
 
 ## Widgets
 
 A widget consists of a `_includes/widgets/` HTML file and a relative `_includes/scripts/widgets/` COFFEESCRIPT file.
 
-#### Datetime
+### Datetime
 
 Given a date will render a `<span>`{:.language-html} element with a _coutdown_ if in the future, or an _elapsed time_ if in the past.
 
@@ -71,3 +71,13 @@ Given a date will render a `<span>`{:.language-html} element with a _coutdown_ i
 |`embed`|Add countdown or elapsed time on the element|`nil`
 |`replace`|Replace the text with the countdown or elapsed time|`nil`
 |`decimals`|Will round the countdown or the elapsed time decimals|0
+
+### Mode toggle
+
+A link with `class="mode-toggle-link"`{:.language-ruby} will toggle the _light/dark_ mode and store the new one in `storage`.
+
+The script will set the mode on every page load applying a class `mode-light` or `mode-dark` to `<html>`{:.language-html}
+
+## Write page form
+
+An element with attributes `show-if-name="my-name" show-if-value="my-value"` will be visible only if the element with `name="my-name"` has value `my-value`.

@@ -10,11 +10,11 @@ template, [hidden]
 // VISIBILITY
 // --------------------------------------
 .if-alone:not(:only-of-type),
-.mode-light .if-mode-dark,
-.mode-dark .if-mode-light,
-.role-admin .if-role-guest,
-.role-guest .if-role-admin,
-.not-logged .if-logged
+.mode-light .show-if-mode-dark,
+.mode-dark .show-if-mode-light,
+.role-admin .show-if-role-guest,
+.role-guest .show-if-role-admin,
+.not-logged .show-if-logged
   display: none
 
 @media (min-width: $mobile-width)

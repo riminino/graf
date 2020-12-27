@@ -1,6 +1,5 @@
-{%- assign weighted = site.html_pages | where_exp: "item", "item.weight != nil" -%}
-{%- assign html_pages = weighted | sort: "weight" -%}
-{%- assign sorted_collections = site.collections | sort: "weight" -%}
+{%- assign html_pages = site.html_pages | where_exp: "item", "item.weight != nil" | sort: "weight" -%}
+{%- assign sorted_collections = site.collections | where_exp: "item", "item.weight != nil" | sort: "weight" -%}
 <nav>
   <details class="if-small-screen">
     <summary>NAVIGATION</summary>

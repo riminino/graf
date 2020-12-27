@@ -7,40 +7,34 @@ weight: 1
 
 # Structure
 
-The top navigation will show  on the left (on the top in mobile mode) the pages links, sorted by `weight` liquid numeric variabile, then the site collections as dropdowns.
+The top navigation will show on the left (on the top in mobile mode) the pages links, sorted by `weight` liquid numeric variabile (pages without `weight` value will be left out), then the site collections as dropdowns.
 
 Collections also are sorted by `weight` value, and collections documents too.
 
-- Pages sorted in _front matter_
+Pages sorted in _front matter_
 
 ```yml
 ---
-weight: <i>
+weight: 1
 ---
 ```
 
-- Collections sorted in `_config.yml`
+Collections sorted in `_config.yml`
 
 ```yml
 # _config.yml
 collections:
-  <my-collection>:
+  my-collection:
     output: true
-    title: <collection-title>
-
-defaults:
-  - scope:
-      type: <my-collection>
-    values:
-      layout: default
-      weight: <j>
+    title: Collection title
+    weight: 1
 ```
 
-- Collections documents sorted in _front matter_
+Collections documents sorted in _front matter_
 
 ```yml
 ---
-weight: <k>
+weight: 1
 ---
 ```
 
@@ -59,7 +53,7 @@ The mode is stored in `storage` and the `<html>`{:.language-html} will have the 
 
 - Toggle link: `{% raw %}{% include widgets/mode_toggle_link.html %}{% endraw %}`{:.language-liquid} {% include widgets/mode_toggle_link.html %}
 - Opposite mode: apply `class="mode-opposite"`{:.language-ruby} to an element to use the opposite mode colors.
-- Elements visibility: apply `class='if-mode-light'`{:.language-ruby} and `class='if-mode-dark'`{:.language-ruby} to show an element only in one mode.
+- Elements visibility: apply `class='show-if-mode-light'`{:.language-ruby} and `class='show-if-mode-dark'`{:.language-ruby} to show an element only in one mode.
 
 ## Syntax highlight
 
@@ -71,7 +65,7 @@ Preview of __Pygments__ and __Rouge__ color scheme: <https://trasparente.github.
 css:
   syntax:
     light: rouge/github
-    dark: rouge/gruvbox
+    dark: rouge/molokai
 ```
 
 ## Customization
@@ -95,12 +89,12 @@ Page layout use flexbox with `flex-direction: column;`{:.language-css}
 
 ## Page classes
 
-Apply some CSS classes to customize pages via YAML `classes` array:
+Apply CSS classes to customize pages via YAML `classes` array:
 
 <div class="grid">
 <div markdown="1">
 
-- For every page
+For every page
 
 ```yml
 # _config.yml
@@ -113,7 +107,7 @@ defaults:
 </div>
 <div markdown="1">
 
-- For one or more collections
+For pages in one or more collections
 
 ```yml
 # _config.yml
@@ -125,7 +119,7 @@ defaults:
 ```
 </div>
 </div>
-- for singular pages, in the _front-matter_
+For singular pages, in the _front-matter_
 
 ```yml
 ---
@@ -147,18 +141,20 @@ Sidebar
 : `left-sidebar` to show the sidebar on the left
 : `sticky-sidebar` to stick sidebar on top during scroll
 
+Accents
+: `blue`, `red`, `green`, `orange` the link color
+: Defined with SASS lists `$accents-dark`{:.language-sass}, `$accents-light`{:.language-sass}
+
 ## Sidebar
 
-The main content has an optional sidebar and use flexbox with `flex-direction: row-reverse;`{:.language-css} for a right sidebar.
+The main page content has an optional sidebar and use flexbox with `flex-direction: row-reverse;`{:.language-css} for a right sidebar.
 
 ```html
 <main>
   <aside><!-- Sidebar --></aside>
-  <section><!-- Content --></section>
+  <section><!-- Page content --></section>
 </main>
 ```
-
-Sidebar width is `.4` times the section width; change the value with the SASS variabile `$sidebar-width`{:.language-sass} in `assets/css/variabiles.sass`.
 
 ### Widgets
 
@@ -169,7 +165,7 @@ Select the widgets with a YAML array `sidebar: [...]` for the relative pages:
 <div class="grid">
 <div markdown="1">
 
-- For every page
+For every page
 
 ```yml
 # _config.yml
@@ -182,7 +178,7 @@ defaults:
 </div>
 <div markdown="1">
 
-- For one or more collections
+For pages in one or more collections
 
 ```yml
 # _config.yml
@@ -195,7 +191,7 @@ defaults:
 </div>
 </div>
 
-- for singular pages, in the _front-matter_
+For singular pages, in the _front-matter_
 
 ```yml
 ---
@@ -206,7 +202,7 @@ sidebar: [...]
 ### Widgets list
 
 Table of contents
-: `toc` Will move the table of contents generated in the page with `{:toc}` to the sidebar
+: `toc` Will move the table of contents (generated in the page with `{:toc}`) to the sidebar
 
 ## Widths
 
@@ -217,6 +213,8 @@ Configure the widths overriding `sass` variabiles in `assets/css/variabiles.sass
 $max-width:     100em !default
 // Content width: specific amount or precentange of the body width
 $content-width: 90% !default
+// Sidebar width: value relative to the section width
+$sidebar-width: .4
 // Mobile threshold for media-query
 $mobile-width:  700px !default
 ```
@@ -232,7 +230,7 @@ When viewport is under `$mobile-width`{:.language-sass}
 
 ## Grids
 
-Grids are `<div>`{:.language-html} elements (columns) contained in a `<div class="grid">`{:.language-html} element.
+Grids are `<div>`{:.language-html} elements (columns) contained in a `<div class="grid">`{:.language-html} elements (rows).
 
 ```html
 <!-- HTML markup -->

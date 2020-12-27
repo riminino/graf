@@ -8,6 +8,7 @@ collections:
   docs:
     output: true
     title: Docs
+    weight: 1
 
 # DEFAULTS
 defaults:
@@ -15,7 +16,6 @@ defaults:
       type: docs
     values:
       layout: default
-      weight: 1
       classes: [right-sidebar no-header sticky-nav sticky-sidebar]
       sidebar: [toc]
 

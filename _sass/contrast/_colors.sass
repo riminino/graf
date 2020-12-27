@@ -1,6 +1,8 @@
 html, body,
 header, footer,
-form, input:not([type=submit]):not([type=reset]):not([type=button]), textarea,
+form, input:not([type=submit]):not([type=reset]):not([type=button]),
+textarea,
+select[multiple],
 blockquote,
 table, th, td,
 nav, nav ul
@@ -47,7 +49,9 @@ summary
 // --------------------------------------
 
 // Background and foreground
-input:not([type=submit]):not([type=reset]):not([type=button]), textarea
+input:not([type=submit]):not([type=reset]):not([type=button]),
+textarea,
+select[multiple]
   background: var(--bg)
   color: var(--fg)
 

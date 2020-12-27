@@ -32,24 +32,28 @@ form
 // Spans for descriptions
 input + span, textarea + span, label.radio + span, label.boolean + span
   font-size: 80%
-input[type='checkbox'] + span, label.boolean + span
+input[type='checkbox'] + span, label.boolean + span, label.radio
   display: block
 
 // Labels and small notes on forms
 label, input + span, textarea + span
   margin: .2rem
 
+// Labels for multiple selects
+label + select[multiple]
+  vertical-align: top
+
 // Reset appearance
-input:not([type=reset]):not([type=submit]):not([type=button]):not([type=range]):not([type=checkbox]):not([type=radio]), textarea
+input:not([type=reset]):not([type=submit]):not([type=button]):not([type=range]):not([type=checkbox]):not([type=radio]), textarea, textarea div resizer
   appearance: none
   -webkit-appearance: none
 
 // Remove textarea resize
-textarea
+textarea:not(.resize)
   resize: none
 
 // Cursor
-button:enabled, select:enabled, input:not([readonly]):enabled, label[for]
+button:enabled, select:enabled, input:not([readonly]):enabled, label[for], label.radio
   cursor: pointer
 
 // Disabled

@@ -47,6 +47,7 @@ summary
 // borders
 form, footer, blockquote, textarea, nav,
 input:not([type=submit]):not([type=reset]):not([type=button]),
+select[multiple],
 input[type=color]::-moz-color-swatch,
 input[type=color]::-webkit-color-swatch
   border-color: var(--border-color)
@@ -66,7 +67,9 @@ th, td
 // --------------------------------------
 
 // Background and foreground
-input:not([type=submit]):not([type=reset]):not([type=button]), textarea
+input:not([type=submit]):not([type=reset]):not([type=button]),
+textarea,
+select[multiple]
   background: var(--input-bg)
   color: var(--fg)
 

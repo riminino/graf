@@ -1,11 +1,11 @@
 ###
   Need:
-  - Login link with href "#login"
+  - Login link with .login-link class
   - storage.coffee script
-  - busy function
+  - busy.coffee script
 ###
 login =
-  link: $ "[href='#login']"
+  link: $ "a.login-link"
   text: -> "Logged as #{storage.get 'login.user'} (#{storage.get 'login.role'})"
 
 login.init = ->

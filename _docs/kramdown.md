@@ -13,18 +13,15 @@ Kramdown is the markdown converter for Jekyll.
 
 If an HTML tag has an attribute `markdown="1"` then the content of the tag is parsed as [span level elements](https://kramdown.gettalong.org/syntax.html#html-spans "Kramdown Syntax > HTML Spans").
 
+Classes, ids and attributes
+: `{: .class #id attribute="value"}`
+
 Links
 : With a title on hover `[link](url "title")`
 : Reference name `[link][reference]` and later `[reference]: url "title"`
 
-Classes and ids
-: `{: .class #id}`
-
 Images
 : `![alt-text](url)`
-
-Attributes
-: `{: attribute="value"}`
 
 ## Table of contents
 
@@ -90,14 +87,14 @@ Forms elements render
 
 <!-- Radios -->
 <div>
-  <label>Input inside label.radio</label>
-  <label class="radio">
+  <label>Radio label.radio > input + text</label>
+  <label for="male" class="radio">
     <input type="radio" id="male" name="gender" value="male" checked> Male
   </label>
-  <label class="radio">
+  <label for="female" class="radio">
     <input type="radio" id="female" name="gender" value="female"> Female
   </label>
-  <label class="radio">
+  <label for="other" class="radio">
     <input type="radio" id="other" name="gender" value="other"> Other
   </label>
   <span>Label.radio</span>

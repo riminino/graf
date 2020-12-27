@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" id="top" class="{{ page.classes | join: " " }}">
+<html lang="en-US" id="top" class="{{ page.classes | join: " " }}" data-title="{{ page.title | slugify }}" data-collection="{{ page.collection }}">
 {% include page/head.html %}
 <body>
 <div id="notification"></div>

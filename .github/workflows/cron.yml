@@ -2,7 +2,7 @@
 name: Request Page Build
 on:
   schedule:
-    # At minute 1 past every 24th hour
+    # At minute 1 past every 24th hour (midnight GMT)
     - cron: '1 */24 * * *'
 
 jobs:
@@ -18,4 +18,3 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             })
-            console.log(build.data.status)
